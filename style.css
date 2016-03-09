@@ -1,0 +1,38 @@
+#div1 {
+	border: 2px;
+	border-style: inset;
+	width:100%;
+	height:10em;
+}
+.row {
+	width:100%;
+	margin-top: .5em;
+}
+.time {
+	padding-left: 10px;
+	padding-right: 10px;
+	text-align: center;
+}
+.activity {
+	width:77.5%;
+	border-width: 1px;
+	border-style: solid;
+	border-color: steelblue;
+	padding-left: 5px;
+}
+tr {
+	height:30px;
+}
+#addDayButton {
+	margin-top: 200px;
+	width:200px;
+	height:100px;
+}
+.btn{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #2dbf2d;
+	background-color: #90e590;
+	color: white;
+	font-weight: bold;
+}

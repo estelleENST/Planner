@@ -2,14 +2,7 @@
 <html>
 <head>
 	<style>
-		#div1 {
-			border: 2px;
-			border-style: inset;
-			width:80%;
-			height:60%;
-			padding:50px;
-			margin-top: 5px;
-		}
+		
 	</style>
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
@@ -18,17 +11,40 @@
 </head>
 
 <body>
-	<div class="container-fluid" style="margin-top: 3em; margin-left: 3em;">
-			<div class="row" tyle="margin-top: 6em">
-				<div class="col-md-4">
+	<div class="container-fluid">
+			<div class="row">
+				<!-- VIEW 1 -->
+				<div class="col-md-3">
 					<div class="container-fluid">
-						<div class="row"> <button type="submit" id="createButton" class="btn btn default" style="width:80%;"> + Add activity </button> </div>
-						<div class="row" id="div1"></div>
+						<div class="row"> <button type="submit" id="createButton" class="btn btn default" style="width:100%;"> + Add activity </button> </div>
+						<div class="row" id="div1">
+				            <table id='table-draggable1'>  
+				                <tbody class="connectedSortable">  
+				                    <tr>
+				                        <th class="time">30 min</th>
+				                        <th class="activity" bgcolor="#d8d8ff">Idea 1</th>  
+				                    </tr>
+				                    <tr>
+				                        <th class="time">35 min</th>
+				                        <th class="activity" bgcolor="#ff9d9d">Working in group</th>  
+				                    </tr>
+				                </tbody>
+				            </table>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<!-- VIEW 2 -->
+				<div class="col-md-3">
+
 				</div>
-				<div class="col-md-4">
+				<!-- VIEW 3 -->
+				<div class="col-md-3">
+					<div class="container-fluid">
+						<div class="row"><button type="submit" id="addDayButton" class="btn btn default"> + Add a day </button></div>
+					</div>
+				</div>
+				<!-- VIEW 4 -->
+				<div class="col-md-3">
 				</div>
 			</div>
 	</div>
