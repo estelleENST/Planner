@@ -36,3 +36,21 @@ tr {
 	color: white;
 	font-weight: bold;
 }
+.inputForm {
+	height: 1.8em !important;
+}
+.colorBand {
+	min-height: 5px;
+}
+.table-condensed {
+	height: 10em !important;
+}
+.progressContainer {
+	height: 100%; 
+	width:100%; 
+	position: absolute; 
+	left: 0; 
+	top: 0; 
+	padding: 0px !important; 
+	margin: 0px !important;
+}
