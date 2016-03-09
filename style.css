@@ -1,12 +1,18 @@
 #div1 {
 	border: 2px;
-	border-style: inset;
+	border-style: dashed;
+	padding: .5em;
+	border-color: #AAAAAA;
 	width:100%;
+	font-size: .8em;
 	height:10em;
 }
 .row {
 	width:100%;
 	margin-top: .5em;
+}
+th {
+	font-weight: normal;
 }
 .time {
 	padding-left: 10px;
@@ -28,7 +34,7 @@ tr {
 	width:200px;
 	height:100px;
 }
-.btn{
+.btn {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #2dbf2d;
@@ -43,7 +49,8 @@ tr {
 	min-height: 5px;
 }
 .table-condensed {
-	height: 10em !important;
+	height: 6.5em !important;
+	font-size: .8em;
 }
 .progressContainer {
 	height: 100%; 
