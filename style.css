@@ -34,7 +34,16 @@ tr {
 	width:200px;
 	height:100px;
 }
-.btn {
+#overlay {
+	position: absolute; 
+	height: 100%; 
+	background-color: rgb(255,255,255); 
+	text-align: center;
+	top: 0; 
+	margin: 0; 
+	left: 0;
+}
+.btn-special {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #2dbf2d;

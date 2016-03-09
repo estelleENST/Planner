@@ -8,70 +8,108 @@
 </head>
 
 <body>
-	<div class="container-fluid">
-			<div class="row">
-				<!-- VIEW 1 -->
-				<div class="col-md-3">
-					<div class="container-fluid">
-						<div class="row"> <button type="submit" id="createButton" class="btn btn default" style="width:100%;"> + Add activity </button> </div>
-						<div class="row" id="div1">
-				            <table id='table-draggable1'>  
-				                <tbody class="connectedSortable">  
-				                    <tr>
-				                        <th class="time">30 min</th>
-				                        <th class="activity" bgcolor="#d8d8ff">Idea 1</th>  
-				                    </tr>
-				                    <tr>
-				                        <th class="time">35 min</th>
-				                        <th class="activity" bgcolor="#ff9d9d">Working in group</th>  
-				                    </tr>
-				                </tbody>
-				            </table>
-						</div>
-					</div>
-				</div>
-				<!-- VIEW 2 -->
-				<div class="col-md-3">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-8">
-								<div class="row">
-									<table class="table-condensed">
-										<tr>
-											<td width="70%">Start:</td>
-											<td width="30%"><input type="text" class="form-control inputForm"></td>
-										</tr>
-										<tr>
-											<td width="70%">End time:</td>
-											<td width="30%">8:00</td>										
-										</tr>
-										<tr>
-											<td width="70%">Total length:</td>
-											<td width="30%">0mn</td>
-										</tr>
-									</table>
-								</div>
-							</div>
-							<div class="col-md-4" style="height: 6.5em !important;">
-								<div class="container-fluid progressContainer">
-									<div class="row" style="margin: 0px; background-color: skyblue; height: 70%; width: 100%;"></div>
-									<div class="row" style="margin: 0px; background-color: orange; height: 10%; width: 100%;"></div>
-									<div class="row" style="margin: 0px; background-color: red; height: 1px; top: 80% width: 100%;"></div>
-									<div class="row" style="margin: 0px; background-color: pink; height: 20%; top: 81%; width: 100%;"></div>
-									</div>
-								</div>
-						</div>
-						<div class="row" id="div1">
-						</div>
-					</div>
-				</div>
-				<!-- VIEW 3 -->
-				<div class="col-md-3">
-					<div class="container-fluid">
-						<div class="row"><button type="submit" id="addDayButton" class="btn btn default"> + Add a day </button></div>
+	<div class="container-fluid" style="height: 100%">
+		<!-- REGULAR VIEW -->
+		<div class="row">
+			<!-- VIEW 1 -->
+			<div class="col-md-3">
+				<div class="container-fluid">
+					<div class="row"> <button type="submit" id="createButton" class="btn btn-special" style="width:100%;"> + Add activity </button> </div>
+					<div class="row" id="div1">
+			            <table id='table-draggable1'>  
+			                <tbody class="connectedSortable">  
+			                    <tr>
+			                        <th class="time">30 min</th>
+			                        <th class="activity" bgcolor="#d8d8ff">Idea 1</th>  
+			                    </tr>
+			                    <tr>
+			                        <th class="time">35 min</th>
+			                        <th class="activity" bgcolor="#ff9d9d">Working in group</th>  
+			                    </tr>
+			                </tbody>
+			            </table>
 					</div>
 				</div>
 			</div>
+			<!-- VIEW 2 -->
+			<div class="col-md-3">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="row">
+								<table class="table-condensed">
+									<tr>
+										<td width="70%">Start:</td>
+										<td width="30%"><input type="text" class="form-control inputForm"></td>
+									</tr>
+									<tr>
+										<td width="70%">End time:</td>
+										<td width="30%">8:00</td>										
+									</tr>
+									<tr>
+										<td width="70%">Total length:</td>
+										<td width="30%">0mn</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+						<div class="col-md-4" style="height: 6.5em !important;">
+							<div class="container-fluid progressContainer">
+								<div class="row" style="margin: 0px; background-color: skyblue; height: 70%; width: 100%;"></div>
+								<div class="row" style="margin: 0px; background-color: orange; height: 10%; width: 100%;"></div>
+								<div class="row" style="margin: 0px; background-color: red; height: 1px; top: 80% width: 100%;"></div>
+								<div class="row" style="margin: 0px; background-color: pink; height: 20%; top: 81%; width: 100%;"></div>
+								</div>
+							</div>
+					</div>
+					<div class="row" id="div1">
+					</div>
+				</div>
+			</div>
+			<!-- VIEW 3 -->
+			<div class="col-md-3">
+				<div class="container-fluid">
+					<div class="row"><button type="submit" id="addDayButton" class="btn btn-special"> + Add a day </button></div>
+				</div>
+			</div>
+		</div>
+		<!-- ADDING AN ACTIVITY (VIEW 4) -->
+		<div class="row" id="overlay" style="visibility: hidden;">
+			<div class="col-md-12" style="top: 20%; min-height: 40%; text-align: center;">
+				<div class="container-fluid" style="width: 50em;">
+					<div class="row">
+						<input type="text" class="form-control" placeholder="Title">
+					</div>
+					<div class="row">
+						<div class="col-md-12 input-group">
+							<input type="text" class="form-control" placeholder="30" aria-describedby="basic-addon2">
+							<span class="input-group-addon" id="basic-addon2">mn</span>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 input-group">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
+								Presentation <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="#">Other</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="row">
+						<input type="text" style="min-height: 10em; text-align: left;" class="form-control" placeholder="John presents second idea">
+					</div>
+					<div class="row" style="text-align: right;">
+						<button type="button" class="btn btn-danger">
+							Cancel
+						</button>
+						<button type="button" class="btn btn-success">
+							Save
+						</button>
+					</div>								
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
