@@ -8,6 +8,7 @@
 </head>
 
 <body>
+	<div id="exampleView">
 	<div class="container-fluid" style="height: 100%">
 		<!-- REGULAR VIEW -->
 		<div class="row">
@@ -17,16 +18,7 @@
 					<div class="row"> <button type="submit" id="createButton" class="btn btn-special" style="width:100%;"> + Add activity </button> </div>
 					<div class="row" id="div1">
 			            <table id='table-draggable1'>  
-			                <tbody class="connectedSortable">  
-			                    <tr>
-			                        <th class="time">30 min</th>
-			                        <th class="activity" bgcolor="#d8d8ff">Idea 1</th>  
-			                    </tr>
-			                    <tr>
-			                        <th class="time">35 min</th>
-			                        <th class="activity" bgcolor="#ff9d9d">Working in group</th>  
-			                    </tr>
-			                </tbody>
+			                
 			            </table>
 					</div>
 				</div>
@@ -111,5 +103,20 @@
 			</div>
 		</div>
 	</div>
+	</div>
+	
+	<!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/plannerModel.js"></script>
+	<script src="js/model/activityModel.js"></script>
+	<script src="js/model/dayModel.js"></script>
+	<script src="js/view/exampleView.js"></script>
+	<!-- <script src="js/view/exampleViewController.js"></script> -->
+
 </body>
 </html>
