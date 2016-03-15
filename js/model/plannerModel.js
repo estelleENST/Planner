@@ -70,7 +70,7 @@ function Model(){
 	
 	this.notifyObservers = function (args) {
 	    for (var i = 0; i < listeners.length; i++){
-	        listeners[i].update(args);
+	        listeners[i](args);
 	    }
 	};
 	
