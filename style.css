@@ -1,39 +1,122 @@
-#div1 {
-	border: 2px;
-	border-style: dashed;
-	padding: .5em;
-	border-color: #AAAAAA;
-	width:100%;
-	font-size: .8em;
-	height:10em;
+/* GENERAL*/ 
+
+@font-face {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Karla'), local('Karla-Regular'), url(karla.woff) format('woff');
 }
+
+html * {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+	font-family: 'Karla';
+	font-size: 1.5em;
+}
+
+h3 {
+	text-align: center;
+	color: #FFFFFF;
+}
+
+table {
+	font-size: 0.9em;
+}
+
 .row {
-	width:100%;
 	margin-top: .5em;
 }
-th {
-	font-weight: normal;
+
+.translucentContainer {
+	background-color: rgba(255,255,255,0.5);
+	padding: .5em;
+	min-height: 33em;
 }
-.time {
-	padding-left: 10px;
-	padding-right: 10px;
+.opaqueContainer {
+	background-color: rgba(255,255,255,0.6);
+	height: 8em;
 	text-align: center;
 }
+
+/* VIEW 1 */
+
+#parkedColumn {
+	background-color: #B1D1E0;
+	height: 100%;
+}
+
+.type-1 {	/* yellow - work */
+	background-color: #F1AD1D;
+}
+
+.type-2 {	/* green - pause */
+	background-color: #17A768;
+}
+
+.type-3 {	/* red - presentation */
+	background-color: #F1601D;
+}
+
+.type-4 {	/* beige - brainstorm */
+	background-color: #BBAE93;
+}
+
+#parkedDraggable {
+	width: 100%;
+	margin-top: -.5em;
+	border-collapse: separate;
+	border-spacing: 0 .5em;
+}
+#parkedDraggable tr:hover {
+	cursor: move;
+}
+.time {
+	text-align: center;
+	background-color: #FFFFFF;
+}
 .activity {
-	width:77.5%;
-	border-width: 1px;
-	border-style: solid;
-	border-color: steelblue;
-	padding-left: 5px;
+	padding: .5em;
+	color: #FFFFFF;
 }
-tr {
-	height:30px;
+
+/* VIEW 2 */
+
+.dayColumn {
+	background-color: #C9CF31;
+	height: 100%;
 }
+
 #addDayButton {
-	margin-top: 200px;
+	margin-top: 100%;
 	width:200px;
 	height:100px;
 }
+
+.colorBand {
+	min-height: 5px;
+}
+.table-condensed {
+	text-align: left;
+	border-collapse: separate;
+	border-spacing: 0em .5em;
+}
+.table-condensed td {
+	height: 2.5em;
+}
+.progressContainer {
+	height: 100%; 
+	width:100%; 
+	position: absolute; 
+	left: 0; 
+	top: 0; 
+	padding: .5em;
+	margin: 0px;
+}
+
+/* VIEW 4 */
+
 #overlay {
 	position: absolute; 
 	height: 100%; 
@@ -42,31 +125,5 @@ tr {
 	top: 0; 
 	margin: 0; 
 	left: 0;
-}
-.btn-special {
-	border-width: 1px;
-	border-style: solid;
-	border-color: #2dbf2d;
-	background-color: #90e590;
-	color: white;
-	font-weight: bold;
-}
-.inputForm {
-	height: 1.8em !important;
-}
-.colorBand {
-	min-height: 5px;
-}
-.table-condensed {
-	height: 6.5em !important;
-	font-size: .8em;
-}
-.progressContainer {
-	height: 100%; 
-	width:100%; 
-	position: absolute; 
-	left: 0; 
-	top: 0; 
-	padding: 0px !important; 
-	margin: 0px !important;
+	width: 100%;
 }

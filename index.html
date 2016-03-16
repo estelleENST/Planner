@@ -4,70 +4,74 @@
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="timepicker/bootstrap-timepicker.min.css">
 
 </head>
 
 <body>
 	<div id="exampleView">
-	<div class="container-fluid" style="height: 100%">
 		<!-- REGULAR VIEW -->
-		<div class="row">
-			<!-- VIEW 1 -->
-			<div class="col-md-3">
+		<div class="row" style="position: absolute; height: 100%; margin: 0; padding: 0;">
+			<!-- VIEW 1 (PARKED) -->
+			<div class="col-md-3" id="parkedColumn">
 				<div class="container-fluid">
-					<div class="row"> <button type="submit" id="createButton" class="btn btn-special" style="width:100%;"> + Add activity </button> </div>
-					<div class="row" id="div1">
-			            <table id='table-draggable1'>  
-			                
+					<div class="row"> 
+						<h3>Parked Activities</h3>
+						<div class="col-md-12 opaqueContainer" style="padding-top: 3em;">
+							<button type="submit" id="createButton" class="btn btn-info"> + Add activity </button> 
+						</div>
+					</div>
+					<div class="row translucentContainer">
+			            <table id="parkedDraggable">
 			            </table>
 					</div>
 				</div>
 			</div>
-			<!-- VIEW 2 -->
-			<div class="col-md-3">
+			<!-- VIEW 2 (DAY) -->
+			<div class="col-md-3 dayColumn">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-md-8">
-							<div class="row">
-								<table class="table-condensed">
-									<tr>
-										<td width="70%">Start:</td>
-										<td width="30%"><input type="text" class="form-control inputForm"></td>
-									</tr>
-									<tr>
-										<td width="70%">End time:</td>
-										<td width="30%">8:00</td>										
-									</tr>
-									<tr>
-										<td width="70%">Total length:</td>
-										<td width="30%">0mn</td>
-									</tr>
-								</table>
-							</div>
+						<h3>Day 1</h3>
+						<div class="col-md-8 opaqueContainer">
+							<div class="input-group bootstrap-timepicker timepicker" style="margin-top: .5em;">
+	    						<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i> Start: </span>
+	    						<input id="timepicker1" type="text" class="form-control input-small">
+								</div>
+							<table class="table-condensed">
+								<tr>
+									<td width="70%">End time:</td>
+									<td width="30%">8:00</td>										
+								</tr>
+								<tr>
+									<td width="70%">Total length:</td>
+									<td width="30%">0mn</td>
+								</tr>
+							</table>
 						</div>
-						<div class="col-md-4" style="height: 6.5em !important;">
+						<div class="col-md-4 opaqueContainer">
 							<div class="container-fluid progressContainer">
-								<div class="row" style="margin: 0px; background-color: skyblue; height: 70%; width: 100%;"></div>
-								<div class="row" style="margin: 0px; background-color: orange; height: 10%; width: 100%;"></div>
-								<div class="row" style="margin: 0px; background-color: red; height: 1px; top: 80% width: 100%;"></div>
-								<div class="row" style="margin: 0px; background-color: pink; height: 20%; top: 81%; width: 100%;"></div>
+								<div class="row type-1" style="margin: 0px; height: 50%; width: 100%;"></div>
+								<div class="row type-3" style="margin: 0px; height: 10%; width: 100%;"></div>
+								<div class="row type-4" style="margin: 0px; height: 9%; width: 100%;"></div>
+								<div class="row" style="background-color: red; margin: 0px; height: 1%; top: 69% width: 100%;"></div>
+								<div class="row type-2" style="margin: 0px; height: 30%; top: 70%; width: 100%;"></div>
 								</div>
 							</div>
 					</div>
-					<div class="row" id="div1">
+					<div class="row translucentContainer">
 					</div>
 				</div>
 			</div>
-			<!-- VIEW 3 -->
+			<!-- VIEW 3 (ADD DAY) -->
 			<div class="col-md-3">
 				<div class="container-fluid">
-					<div class="row"><button type="submit" id="addDayButton" class="btn btn-special"> + Add a day </button></div>
+					<div class="row"><button type="submit" id="addDayButton" class="btn btn-info"> + Add a day </button></div>
 				</div>
 			</div>
 		</div>
 		<!-- ADDING AN ACTIVITY (VIEW 4) -->
 		<div class="row" id="overlay" style="visibility: hidden;">
-			<div class="col-md-12" style="top: 20%; min-height: 40%; text-align: center;">
+			<div class="col-md-12" style="top: 25%; min-height: 40%; text-align: center;">
 				<div class="container-fluid" style="width: 50em;">
 					<div class="row">
 						<input type="text" class="form-control" placeholder="Title">
@@ -83,7 +87,7 @@
 							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
 								Presentation <span class="caret"></span>
 							</button>
-							<ul class="dropdown-menu">
+							<ul class="dropdown-menu" style="width: 100%;">
 								<li><a href="#">Other</a></li>
 							</ul>
 						</div>
@@ -103,7 +107,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	
 	<!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -116,6 +119,7 @@
 	<script src="js/model/activityModel.js"></script>
 	<script src="js/model/dayModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
+	<script type="text/javascript" src="timepicker/bootstrap-timepicker.min.js"></script>
 	<!-- <script src="js/view/exampleViewController.js"></script> -->
 
 </body>
