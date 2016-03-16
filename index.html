@@ -2,9 +2,9 @@
 <html>
 <head>
 	<!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="timepicker/bootstrap-timepicker.min.css">
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="timepicker/bootstrap-timepicker.min.css">
 
 </head>
 
@@ -22,52 +22,28 @@
 						</div>
 					</div>
 					<div class="row translucentContainer">
-			            <table id="parkedDraggable">
-			            </table>
+						<table id="td-1" class="tableDraggable">
+						</table>
+					</div>
+					<div class="row" style="text-align: center; margin-top: 1em;">
+						<button type="submit" id="addDay" class="btn btn-info"> + Add a day </button> 
 					</div>
 				</div>
 			</div>
-			<!-- VIEW 2 (DAY) -->
-			<div class="col-md-3 dayColumn">
-				<div class="container-fluid">
-					<div class="row">
-						<h3>Day 1</h3>
-						<div class="col-md-8 opaqueContainer">
-							<div class="input-group bootstrap-timepicker timepicker" style="margin-top: .5em;">
-	    						<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i> Start: </span>
-	    						<input id="timepicker1" type="text" class="form-control input-small">
-								</div>
-							<table class="table-condensed">
-								<tr>
-									<td width="70%">End time:</td>
-									<td width="30%">8:00</td>										
-								</tr>
-								<tr>
-									<td width="70%">Total length:</td>
-									<td width="30%">0mn</td>
-								</tr>
-							</table>
-						</div>
-						<div class="col-md-4 opaqueContainer">
-							<div class="container-fluid progressContainer">
-								<div class="row type-1" style="margin: 0px; height: 50%; width: 100%;"></div>
-								<div class="row type-3" style="margin: 0px; height: 10%; width: 100%;"></div>
-								<div class="row type-4" style="margin: 0px; height: 9%; width: 100%;"></div>
-								<div class="row" style="background-color: red; margin: 0px; height: 1%; top: 69% width: 100%;"></div>
-								<div class="row type-2" style="margin: 0px; height: 30%; top: 70%; width: 100%;"></div>
-								</div>
-							</div>
-					</div>
-					<div class="row translucentContainer">
-					</div>
-				</div>
+			<!-- VIEW 2 (DAYS) -->
+			<div class="col-md-9" id="dayContainer">
 			</div>
+
+			<!-- Do we use this or the button at the button of the view 1 (parked activities column)? 
+			Problem with this is when we add too many days and the overflow scroll starts - what happens with the button "add a day" ? -->
+
 			<!-- VIEW 3 (ADD DAY) -->
-			<div class="col-md-3">
+			<!--<div class="col-md-3">	
 				<div class="container-fluid">
 					<div class="row"><button type="submit" id="addDayButton" class="btn btn-info"> + Add a day </button></div>
 				</div>
-			</div>
+			</div>-->
+
 		</div>
 		<!-- ADDING AN ACTIVITY (VIEW 4) -->
 		<div class="row" id="overlay" style="visibility: hidden;">
@@ -108,10 +84,53 @@
 		</div>
 	</div>
 	
+
+	<!-- REFERENCE DIV WE CLONE IN JS FOR VIEW2-->
+	<div style="visibility: hidden;">
+		<div class="col-md-4 dayColumn" id="originalColumn">
+			<div class="container-fluid">
+				<div class="row">
+					<h3 class="titleDay">Day </h3> 
+					<div class="col-md-8 opaqueContainer">
+						<div class="input-group bootstrap-timepicker timepicker" style="margin-top: 5%;">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i> Start: </span>
+							<input id="timepicker" type="text" class="form-control input-small time">
+						</div>
+						<table class="table-condensed">
+							<tr>
+								<td width="70%">End time:</td>
+								<td width="30%" class="endTime">8:00</td>										
+							</tr>
+							<tr>
+								<td width="70%">Total length:</td>
+								<td width="30%" class="totalLength">0mn</td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-4 opaqueContainer">
+						<div class="container-fluid progressContainer">									
+							<div class="row progressBlock type-1"></div>
+							<div class="row progressBlock type-3"></div>
+							<div class="row progressBlock type-4"></div>
+							<div class="row progressBlock type-2"></div>
+						</div>
+					</div>
+				</div>
+				<div class="row translucentContainer">
+					<table class="tableDraggable">
+					</table>
+				</div>
+				<div class="row" style="text-align: center; margin-top: 1em;">
+					<button type="submit" id="deleteDay" class="btn btn-danger"> Remove day </button> 
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- jQuery -->
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>

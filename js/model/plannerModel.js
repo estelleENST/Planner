@@ -69,13 +69,13 @@ function Model(){
 	var listeners = [];
 	
 	this.notifyObservers = function (args) {
-	    for (var i = 0; i < listeners.length; i++){
-	        listeners[i](args);
-	    }
+		for (var i = 0; i < listeners.length; i++){
+			listeners[i](args);
+		}
 	};
 	
 	this.addObserver = function (listener) {
-	    listeners.push(listener);
+		listeners.push(listener);
 	};
 	//*** END OBSERVABLE PATTERN ***
 }

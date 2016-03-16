@@ -8,12 +8,17 @@
 }
 
 html * {
+	margin: 0;
+	padding: 0;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
+	margin: 0;
+	padding: 0;
 	font-family: 'Karla';
 	font-size: 1.5em;
+	height: 100%;
 }
 
 h3 {
@@ -32,7 +37,7 @@ table {
 .translucentContainer {
 	background-color: rgba(255,255,255,0.5);
 	padding: .5em;
-	min-height: 33em;
+	min-height: 30em;
 }
 .opaqueContainer {
 	background-color: rgba(255,255,255,0.6);
@@ -63,13 +68,13 @@ table {
 	background-color: #BBAE93;
 }
 
-#parkedDraggable {
+.tableDraggable {
 	width: 100%;
 	margin-top: -.5em;
 	border-collapse: separate;
 	border-spacing: 0 .5em;
 }
-#parkedDraggable tr:hover {
+.tableDraggable tr:hover {
 	cursor: move;
 }
 .time {
@@ -83,11 +88,28 @@ table {
 
 /* VIEW 2 */
 
+#dayContainer {
+	overflow-x: auto; 
+	overflow-y: visible;
+	white-space: nowrap; 
+	height: 100%; 
+	margin: 0; 
+	padding: 0;
+}
 .dayColumn {
-	background-color: #C9CF31;
 	height: 100%;
+	display: inline-block;
+	float: none;
 }
 
+.pair-0 {
+	background-color: #C9CF31;
+
+}
+
+.pair-1 {
+	background-color: #F8931F;
+}
 #addDayButton {
 	margin-top: 100%;
 	width:200px;
@@ -103,7 +125,7 @@ table {
 	border-spacing: 0em .5em;
 }
 .table-condensed td {
-	height: 2.5em;
+	height: 2em;
 }
 .progressContainer {
 	height: 100%; 
@@ -113,6 +135,10 @@ table {
 	top: 0; 
 	padding: .5em;
 	margin: 0px;
+}
+
+.progressBlock {
+	margin: 0px; width: 100%;
 }
 
 /* VIEW 4 */
