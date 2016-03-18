@@ -21,7 +21,7 @@ body {
 	height: 100%;
 }
 
-h3 {
+h4, h3 {
 	text-align: center;
 	color: #FFFFFF;
 }
@@ -41,10 +41,34 @@ table {
 }
 .opaqueContainer {
 	background-color: rgba(255,255,255,0.6);
+	margin-top: .2em;
 	height: 8em;
 	text-align: center;
 }
 
+#addDayButton {
+	margin-top: 100%;
+	width:200px;
+	height:100px;
+}
+
+#nav {
+	position: absolute; 
+	height: 8%; 
+	width: 100%; 
+	top: 0; 
+	margin: 0; 
+	padding: .8%; 
+	background-color: #555555;
+}
+
+#app {
+	position: absolute; 
+	height: 92%; 
+	top: 8%; 
+	margin: 0; 
+	padding: 0;
+}
 /* VIEW 1 */
 
 #parkedColumn {
@@ -104,21 +128,13 @@ table {
 	display: inline-block;
 	float: none;
 }
-
 .pair-0 {
 	background-color: #C9CF31;
-
 }
 
 .pair-1 {
 	background-color: #F8931F;
 }
-#addDayButton {
-	margin-top: 100%;
-	width:200px;
-	height:100px;
-}
-
 .colorBand {
 	min-height: 5px;
 }
@@ -149,10 +165,17 @@ table {
 #overlay {
 	position: absolute; 
 	height: 100%; 
-	background-color: rgb(255,255,255); 
+	background-color: rgba(0,0,0,0.8); 
 	text-align: center;
 	top: 0; 
 	margin: 0; 
 	left: 0;
 	width: 100%;
+}
+
+#infobox {
+	padding: 0;
+	top: 25%; 
+	text-align: center; 
+	background-color: #FFFFFF;
 }
