@@ -11,22 +11,26 @@
 <body>
 	<div id="exampleView">
 		<!-- REGULAR VIEW -->
-		<div class="row" style="position: absolute; height: 100%; margin: 0; padding: 0;">
+		<div class="row" style="position: absolute; height: 8%; width: 100%; top: 0; margin: 0; padding: .8%; background-color: #555555;">
+			<div class="col-md-11">
+			</div>
+			<div class="col-md-1" style="text-align: right;">
+				<button type="submit" id="addDay" class="btn btn-info"> + Day </button> 
+			</div>
+		</div>
+		<div class="row" style="position: absolute; height: 92%; top: 8%; margin: 0; padding: 0;">
 			<!-- VIEW 1 (PARKED) -->
 			<div class="col-md-3" id="parkedColumn">
 				<div class="container-fluid">
 					<div class="row"> 
 						<h3>Parked Activities</h3>
 						<div class="col-md-12 opaqueContainer" style="padding-top: 3em;">
-							<button type="submit" id="createButton" class="btn btn-info"> + Add activity </button> 
+							<button type="submit" id="createButton" class="btn btn-info"> + Activity </button> 
 						</div>
 					</div>
 					<div class="row translucentContainer">
 						<table id="td-1" class="tableDraggable">
 						</table>
-					</div>
-					<div class="row" style="text-align: center; margin-top: 1em;">
-						<button type="submit" id="addDay" class="btn btn-info"> + Add a day </button> 
 					</div>
 				</div>
 			</div>
