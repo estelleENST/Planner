@@ -12,8 +12,11 @@
 	<div id="exampleView">
 		<!-- REGULAR VIEW -->
 		<div class="row" id="nav">
-			<div class="col-md-1 col-md-offset-11" style="text-align: right;">
-				<button type="submit" id="addDay" class="btn btn-info"> + Day </button> 
+			<div class="col-md-2 col-md-offset-5" style="text-align: center;">
+				<h2 style="color: #FFFFFF;">My Planner</h2>
+			</div>
+			<div class="col-md-1 col-md-offset-4" style="text-align: right;">
+				<button type="submit" id="addDay" class="btn btn-info"> <span class="glyphicon glyphicon-plus-sign"></span> Day </button> 
 			</div>
 		</div>
 		<div class="row" id="app">
@@ -22,8 +25,12 @@
 				<div class="container-fluid">
 					<div class="row"> 
 						<h3>Parked Activities</h3>
+						<div class="col-md-12" style="margin-top: .2em; margin-bottom:.2em;">
+							<span class="label type-1">Work</span> <span class="label type-4">Brainstorm</span>  
+							<span class="label type-3">Presentation</span> <span class="label type-2">Break</span>
+						</div>
 						<div class="col-md-12 opaqueContainer" style="padding-top: 3em;">
-							<button type="submit" id="createButton" class="btn btn-info"> + Activity </button> 
+							<button type="submit" id="createButton" class="btn btn-info"> <span class="glyphicon glyphicon-plus-sign"></span> Activity </button> 
 						</div>
 					</div>
 					<div class="row translucentContainer">
@@ -127,7 +134,7 @@
 					</table>
 				</div>
 				<div class="row" style="text-align: center; margin-top: 1em;">
-					<button type="submit" id="deleteDay" class="btn btn-danger"> Remove day </button> 
+					<button type="submit" id="deleteDay" class="btn btn-danger"> <span class="glyphicon glyphicon-remove"></span> Remove day </button> 
 				</div>
 			</div>
 		</div>
