@@ -1,5 +1,8 @@
 var ExampleView = function (container, model) {
 
+//*** Variables accessed in view controller ***
+
+	// Add activity listener
 	this.addActivityBtn = container.find("#addActivityBtn");
 	this.cancelActivityBtn = container.find("#cancelActivityBtn");
 	this.saveActivityBtn = container.find("#saveActivityBtn");
@@ -8,7 +11,10 @@ var ExampleView = function (container, model) {
 	this.addActivityType = container.find("#newType");
 	this.addActivityDescription = container.find("#newDescription");
 
-	// function to toggle display of VIEW 4 (used in exampleViewController)
+	// Add day listener
+	this.addDayBtn = container.find("#addDayBtn");
+
+	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
 		if (yn) 
 			$("#overlay").attr("style","visibility:visible;");
@@ -16,7 +22,18 @@ var ExampleView = function (container, model) {
 			$("#overlay").attr("style","visibility:hidden;");
 	}
 
-	// Displaying Activities
+	// function to get the currently displayed timepickers
+	this.getTimePickers = function() {
+		var t = [];
+		model.days.forEach(function(element,index,array) {
+			t.push($("#timepicker-"+index).timepicker());
+		});
+		return t;
+	}
+
+// *** Observers we call for each update in the model ***
+
+	// function to display activities
 	var displayActivities = function(activityTable) {
 		var tableau = "";
 		activityTable.forEach(function(element, index, array) {
@@ -26,12 +43,12 @@ var ExampleView = function (container, model) {
 		return tableau;
 	}
 
-	// VIEW 1 (PARKED)
+	// VIEW 1 (Parked activities)
 	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
 	}
 
-	// VIEW 2 (DAY)
+	// VIEW 2 (One day)
 	var updateView2 = function(args) {
 		// Clear the previous displays
 		$("#dayContainer").html("");
@@ -58,7 +75,8 @@ var ExampleView = function (container, model) {
 			$("#dayContainer").append(clonedDiv);		
 
 		});
-		// Activate the timepicker
+
+		// Activate the timepicker and repopulate the array
 		model.days.forEach(function(element,index,array) {
 			$("#timepicker-"+index).timepicker("setTime",element.getStart());
 		});

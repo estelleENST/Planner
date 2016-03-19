@@ -1,5 +1,5 @@
 // The possible activity types
-var ActivityType = ["Presentation","Group Work","Discussion","Break"]
+var ActivityType = ["Work","Break","Presentation","Brainstorm"]
 
 // This is an activity constructor
 // When you want to create a new activity you just call
