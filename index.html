@@ -30,7 +30,7 @@
 							<span class="label type-3">Presentation</span> <span class="label type-2">Break</span>
 						</div>
 						<div class="col-md-12 opaqueContainer" style="padding-top: 3em;">
-							<button type="submit" id="createButton" class="btn btn-info"> <span class="glyphicon glyphicon-plus-sign"></span> Activity </button> 
+							<button type="submit" id="addActivityBtn" class="btn btn-info"> <span class="glyphicon glyphicon-plus-sign"></span> Activity </button> 
 						</div>
 					</div>
 					<div class="row translucentContainer">
@@ -72,22 +72,22 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12 input-group">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width: 100%;">
-								Presentation <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" style="width: 100%;">
-								<li><a href="#">Other</a></li>
-							</ul>
+							<select class="form-control" style="width: 100%">
+								<option class="type-1">Work</option>
+								<option class="type-2">Break</option>
+								<option class="type-3">Presentation</option>
+								<option class="type-4">Brainstorm</option>
+							</select>
 						</div>
 					</div>
 					<div class="row">
 						<textarea style="min-height: 10em; text-align: left;" class="form-control">John presents second idea.</textarea>
 					</div>
 					<div class="row" style="text-align: right;">
-						<button type="button" class="btn btn-danger">
+						<button type="button" id="cancelActivityBtn" class="btn btn-danger">
 							Cancel
 						</button>
-						<button type="button" class="btn btn-success">
+						<button type="button" id="saveActivityBtn" class="btn btn-success">
 							Save
 						</button>
 					</div>								
@@ -152,7 +152,7 @@
 	<script src="js/model/dayModel.js"></script>
 	<script src="js/view/exampleView.js"></script>
 	<script type="text/javascript" src="timepicker/bootstrap-timepicker.min.js"></script>
-	<!-- <script src="js/view/exampleViewController.js"></script> -->
+	<script src="js/view/exampleViewController.js"></script>
 
 </body>
 </html>

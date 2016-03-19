@@ -6,7 +6,7 @@ $(function() {
 
 	// //And create the needed controllers and views
 	var exampleView = new ExampleView($("#exampleView"),model);
-	//var exampleViewController = new ExampleViewController(exampleView,model);
+	var exampleViewController = new ExampleViewController(exampleView,model);
 	
 	model.addDay(9,20);
 	model.addDay(8,30);

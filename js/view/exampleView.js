@@ -1,5 +1,15 @@
-
 var ExampleView = function (container, model) {
+
+	this.addActivityBtn = container.find("#addActivityBtn");
+	this.cancelActivityBtn = container.find("#cancelActivityBtn");
+
+	// VIEW 4
+	this.displayView4 = function(yn) {
+		if (yn) 
+			$("#overlay").attr("style","visibility:visible;");
+		else 
+			$("#overlay").attr("style","visibility:hidden;");
+	}
 
 	// Displaying Activities
 	var displayActivities = function(activityTable) {
@@ -12,12 +22,12 @@ var ExampleView = function (container, model) {
 	}
 
 	// VIEW 1 (PARKED)
-	this.updateView1 = function(args) {
+	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
 	}
 
 	// VIEW 2 (DAY)
-	this.updateView2 = function(args) {
+	var updateView2 = function(args) {
 		// Clear the previous displays
 		$("#dayContainer").html("");
 		model.days.forEach(function(element,index,array) {
@@ -49,6 +59,6 @@ var ExampleView = function (container, model) {
 		});
 	}
 
-	model.addObserver(this.updateView1);
-	model.addObserver(this.updateView2);
+	model.addObserver(updateView1);
+	model.addObserver(updateView2);
 }
