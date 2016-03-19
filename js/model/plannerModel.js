@@ -64,6 +64,20 @@ function Model(){
 		}
 		this.notifyObservers();
 	};
+
+	// converts a string to the type id
+	this.convertType = function(string) {
+		switch(string) {
+			case "Presentation": 
+				return 1;
+			case "Break":
+				return 2;
+			case "Brainstorm":
+				return 4;
+			case "Work":
+				return 1;
+		}
+	}
 	
 	//*** OBSERVABLE PATTERN ***
 	var listeners = [];

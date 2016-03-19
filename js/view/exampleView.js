@@ -2,8 +2,13 @@ var ExampleView = function (container, model) {
 
 	this.addActivityBtn = container.find("#addActivityBtn");
 	this.cancelActivityBtn = container.find("#cancelActivityBtn");
+	this.saveActivityBtn = container.find("#saveActivityBtn");
+	this.addActivityTitle = container.find("#newTitle");
+	this.addActivityDuree = container.find("#newDuree");
+	this.addActivityType = container.find("#newType");
+	this.addActivityDescription = container.find("#newDescription");
 
-	// VIEW 4
+	// function to toggle display of VIEW 4 (used in exampleViewController)
 	this.displayView4 = function(yn) {
 		if (yn) 
 			$("#overlay").attr("style","visibility:visible;");

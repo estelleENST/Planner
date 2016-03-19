@@ -62,17 +62,17 @@
 				</div>
 				<div class="container-fluid" style="margin:1em;">
 					<div class="row">
-						<input type="text" class="form-control" placeholder="Title">
+						<input type="text" id ="newTitle" class="form-control" placeholder="Title">
 					</div>
 					<div class="row">
 						<div class="col-md-12 input-group">
-							<input type="text" class="form-control" placeholder="30" aria-describedby="basic-addon2">
+							<input type="text" class="form-control" id="newDuree" placeholder="30" aria-describedby="basic-addon2">
 							<span class="input-group-addon" id="basic-addon2">mn</span>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12 input-group">
-							<select class="form-control" style="width: 100%">
+							<select class="form-control" id="newType" style="width: 100%">
 								<option class="type-1">Work</option>
 								<option class="type-2">Break</option>
 								<option class="type-3">Presentation</option>
@@ -81,7 +81,7 @@
 						</div>
 					</div>
 					<div class="row">
-						<textarea style="min-height: 10em; text-align: left;" class="form-control">John presents second idea.</textarea>
+						<textarea style="min-height: 10em; id="newDescription" text-align: left;" class="form-control">John presents second idea.</textarea>
 					</div>
 					<div class="row" style="text-align: right;">
 						<button type="button" id="cancelActivityBtn" class="btn btn-danger">
