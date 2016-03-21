@@ -25,7 +25,11 @@ function Day(startH,startM) {
 	// the end time of the day
 	this.getEnd = function() {
 		var end = this._start + this.getTotalLength();
-		return Math.floor(end/60) + ":" + end % 60;
+		if(end % 60 <10){
+			return Math.floor(end/60) + ":0" + end % 60
+		}else{
+			return Math.floor(end/60) + ":" + end % 60;
+		}
 	};
 	
 	// returns the string representation Hours:Minutes of 
