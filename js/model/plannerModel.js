@@ -65,7 +65,7 @@ function Model(){
 		this.notifyObservers();
 	};
 
-	// removes a day
+	// removes a day and parks the removed day's activities
 	this.removeDay = function(dayIndex) {
 		var j = this.days[dayIndex]._activities.length
 		for (var i = 0; i < j; i++) {

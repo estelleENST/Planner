@@ -166,6 +166,15 @@ table {
 	margin: 0px; width: 100%;
 }
 
+.breakThreshold {
+	background-color: white; 
+	position: absolute; 
+	top: 70%; 
+	left: 3%; 
+	height: 1px; 
+	width: 94%;
+}
+
 /* VIEW 4 */
 
 #overlay {
