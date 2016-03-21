@@ -88,6 +88,9 @@ var ExampleView = function (container, model) {
 		$( ".connectedSortable" )
         .sortable()
         .disableSelection();
+
+        $( "#dayContainer" )
+        .sortable()
 	}
 
 	model.addObserver(updateView1);
