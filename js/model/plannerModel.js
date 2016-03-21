@@ -64,6 +64,16 @@ function Model(){
 		}
 		this.notifyObservers();
 	};
+
+	// removes a day
+	this.removeDay = function(dayIndex) {
+		var j = this.days[dayIndex]._activities.length
+		for (var i = 0; i < j; i++) {
+			this.moveActivity(dayIndex,0,null); // Each time we move an activity to the parked activity list, the others go down a position.
+		}
+		this.days.splice(dayIndex,1);
+		this.notifyObservers();
+	}
 	
 	//*** OBSERVABLE PATTERN ***
 	var listeners = [];

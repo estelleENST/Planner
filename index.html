@@ -11,6 +11,7 @@
 <body>
 	<div id="exampleView">
 		<!-- REGULAR VIEW -->
+		<!-- VIEW 0 (NAV) -->
 		<div class="row" id="nav">
 			<div class="col-md-2 col-md-offset-5" style="text-align: center;">
 				<h2 style="color: #FFFFFF;">My Planner</h2>
@@ -43,9 +44,7 @@
 			<div class="col-md-9" id="dayContainer">
 			</div>
 
-			<!-- Do we use this or the button at the button of the view 1 (parked activities column)? 
-			Problem with this is when we add too many days and the overflow scroll starts - what happens with the button "add a day" ? -->
-
+			<!-- Moved this to VIEW 0 (nav bar) -->
 			<!-- VIEW 3 (ADD DAY) -->
 			<!--<div class="col-md-3">	
 				<div class="container-fluid">
@@ -134,7 +133,7 @@
 					</table>
 				</div>
 				<div class="row" style="text-align: center; margin-top: 1em;">
-					<button type="submit" id="deleteDay" class="btn btn-danger"> <span class="glyphicon glyphicon-remove"></span> Remove day </button> 
+					<button type="submit" class="btn btn-danger deleteDay"> <span class="glyphicon glyphicon-remove"></span> Remove day </button> 
 				</div>
 			</div>
 		</div>

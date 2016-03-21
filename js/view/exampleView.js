@@ -23,11 +23,11 @@ var ExampleView = function (container, model) {
 			$("#overlay").attr("style","visibility:hidden;");
 	}
 
-	// function to get the currently displayed timepickers
-	this.getTimePickers = function() {
+	// function to get the currently displayed listeners for a day (id = "#timepicker-" or "#deleteDayBtn-")
+	this.getDisplayedDaysListeners = function(id) {
 		var t = [];
 		model.days.forEach(function(element,index,array) {
-			t.push($("#timepicker-"+index).timepicker());
+			t.push($(id+index));
 		});
 		return t;
 	}
@@ -59,13 +59,10 @@ var ExampleView = function (container, model) {
 		// Clear the previous displays
 		$("#dayContainer").html("");
 		model.days.forEach(function(element,index,array) {
-			// We want an alternated color scheme
-			var pair = 0;
-			if (index & 1) pair = 1;
 
 			// Compute the activity table
 			var table = displayActivities(element._activities);
-			$("#originalColumn").attr("class","col-md-4 dayColumn pair-"+ pair);
+			// $("#originalColumn").attr("class","col-md-4 dayColumn pair-"+ pair); Uncomment this to have an alternated color scheme
 			$("#originalColumn .titleDay").html("Day " + index);
 			$("#originalColumn .time").attr("id","timepicker-" + index);
 			$("#originalColumn .endTime").html(element.getEnd());
@@ -75,6 +72,7 @@ var ExampleView = function (container, model) {
 			$("#originalColumn .type-3").attr("style","height: "+ element.getLengthByType(3)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .type-4").attr("style","height: "+ element.getLengthByType(4)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .tableDraggable").html(table);
+			$("#originalColumn .deleteDay").attr("id","deleteDayBtn-"+index);
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);

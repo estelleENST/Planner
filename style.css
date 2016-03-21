@@ -30,6 +30,10 @@ table {
 	font-size: 0.9em;
 }
 
+#app {
+	width: 100%;
+}
+
 .row {
 	margin-top: .5em;
 }
@@ -122,20 +126,21 @@ table {
 	padding: 0;
 }
 .dayColumn {
-	background-color: #DBDACD !important;
+	background-color: #DBDACD;
 	border-radius: .3em;
 	margin: .5em 0em .5em .5em;
 	height: 98%;
 	display: inline-block;
 	float: none;
 }
+/* Uncomment this to have an alternated color scheme
 .pair-0 {
 	background-color: #C9CF31;
 }
 
 .pair-1 {
-	background-color: rgba(219,218,205) !important; /*#F8931F;*/
-}
+	background-color: #F8931F;
+}*/
 .colorBand {
 	min-height: 5px;
 }
