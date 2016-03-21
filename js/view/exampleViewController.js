@@ -43,11 +43,15 @@ var ExampleViewController = function(view, model) {
 		} else if(isNaN(view.addActivityDuree.val())){
 			alert("You must enter an integer as duration! ");
 		} else {
-			model.addActivity(new Activity(view.addActivityTitle.val(),
+			if (+view.addActivityDuree.val() === parseInt(+view.addActivityDuree.val(),10)) {
+				model.addActivity(new Activity(view.addActivityTitle.val(),
 				view.addActivityDuree.val(),
 				ActivityType.indexOf(view.addActivityType.val())+1, // +1 because the types go form 1 to 4 while index goes from 0 to 3 
 				view.addActivityDescription.val()));
-			view.displayView4(false);	
+				view.displayView4(false);	
+			} else {
+				alert("Duration must be an integer!");
+			}
 		}
 	})
 }
