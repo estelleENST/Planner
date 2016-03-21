@@ -13,6 +13,7 @@ var ExampleView = function (container, model) {
 
 	// Add day listener
 	this.addDayBtn = container.find("#addDayBtn");
+	this.deleteDayBtn = container.find("#deleteDay");
 
 	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
@@ -35,17 +36,22 @@ var ExampleView = function (container, model) {
 
 	// function to display activities
 	var displayActivities = function(activityTable) {
-		var tableau = "";
+		var tableau = "<tbody class='connectedSortable'>";
 		activityTable.forEach(function(element, index, array) {
-			tableau += "<tr width='100%'><td width='30%' class='time'>" + element.getLength() 
+			tableau += "<tr width='100%' draggable='true'><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 		});
+		tableau += "</tbody>";
 		return tableau;
 	}
 
 	// VIEW 1 (Parked activities)
 	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
+
+		$( ".connectedSortable" )
+        .sortable()
+        .disableSelection();
 	}
 
 	// VIEW 2 (One day)
@@ -80,6 +86,10 @@ var ExampleView = function (container, model) {
 		model.days.forEach(function(element,index,array) {
 			$("#timepicker-"+index).timepicker("setTime",element.getStart());
 		});
+
+		$( ".connectedSortable" )
+        .sortable()
+        .disableSelection();
 	}
 
 	model.addObserver(updateView1);

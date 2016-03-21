@@ -14,4 +14,5 @@ model.addActivity(new Activity("Fika",120,2,"Pink Crush"),0,1);
 model.addActivity(new Activity("Presentation",10,3,"Pathicular"),0,1);	
 model.addActivity(new Activity("Brainstorm",20,4,"Maplog?"),1,0);	
 model.addActivity(new Activity("Break",10,2,"Coffee"));
+model.addActivity(new Activity("Test",10,3,"Coffee"));
 model.addDay(00,00);
