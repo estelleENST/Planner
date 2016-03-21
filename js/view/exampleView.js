@@ -73,6 +73,7 @@ var ExampleView = function (container, model) {
 			$("#originalColumn .type-4").attr("style","height: "+ element.getLengthByType(4)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .tableDraggable").html(table);
 			$("#originalColumn .deleteDay").attr("id","deleteDayBtn-"+index);
+			$("#originalColumn .tableDraggable").attr("id","tableDraggable-"+index);
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);

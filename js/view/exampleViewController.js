@@ -15,9 +15,10 @@ var ExampleViewController = function(view, model) {
 
 //*** VIEW 2 ***
 	// Observer that updates the controllers for each day when days in the model change
-	updateTimePickersControllers = function() {
+	updateDayControllers = function() {
 		var t = view.getDisplayedDaysListeners("#timepicker-"); // Getting currently displayed timepickers in the view
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
+		var a = view.getDisplayedDaysListeners("#tableDraggable-");
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
 			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
@@ -27,6 +28,8 @@ var ExampleViewController = function(view, model) {
 			d[index].click(function() {
 				model.removeDay(index);
 			});
+			// For the draggable activities table
+			// Do something
 		});
 	}
 	model.addObserver(updateTimePickersControllers);
@@ -40,18 +43,14 @@ var ExampleViewController = function(view, model) {
 	view.saveActivityBtn.click(function() {
 		if(view.addActivityTitle.val() == 0 || view.addActivityDuree.val() == 0) { // Testing if we have all needed values (no test on activity type bc it is "work" by default)
 			alert("You must choose a title and a duration for your activity! ");
-		} else if(isNaN(view.addActivityDuree.val())){
+		} else if(isNaN(view.addActivityDuree.val())){ // Is the value an integer?
 			alert("You must enter an integer as duration! ");
 		} else {
-			if (+view.addActivityDuree.val() === parseInt(+view.addActivityDuree.val(),10)) {
-				model.addActivity(new Activity(view.addActivityTitle.val(),
+			model.addActivity(new Activity(view.addActivityTitle.val(),
 				view.addActivityDuree.val(),
 				ActivityType.indexOf(view.addActivityType.val())+1, // +1 because the types go form 1 to 4 while index goes from 0 to 3 
 				view.addActivityDescription.val()));
-				view.displayView4(false);	
-			} else {
-				alert("Duration must be an integer!");
-			}
+			view.displayView4(false);	
 		}
 	})
 }
