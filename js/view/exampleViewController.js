@@ -32,7 +32,7 @@ var ExampleViewController = function(view, model) {
 			// Do something
 		});
 	}
-	model.addObserver(updateTimePickersControllers);
+	model.addObserver(updateDayControllers);
 
 //*** VIEW 4 ***
 	// Button to cancel the addition (closes the panel)

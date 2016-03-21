@@ -49,9 +49,9 @@ var ExampleView = function (container, model) {
 	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
 
-		$( ".connectedSortable" )
-        .sortable()
-        .disableSelection();
+		$(".connectedSortable")
+			.sortable()
+			.disableSelection();
 	}
 
 	// VIEW 2 (One day)
@@ -86,12 +86,12 @@ var ExampleView = function (container, model) {
 			$("#timepicker-"+index).timepicker("setTime",element.getStart());
 		});
 
-		$( ".connectedSortable" )
-        .sortable()
-        .disableSelection();
+		$(".connectedSortable")
+			.sortable()
+			.disableSelection();
 
-        $( "#dayContainer" )
-        .sortable()
+		$("#dayContainer")
+			.sortable();
 	}
 
 	model.addObserver(updateView1);
