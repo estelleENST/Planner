@@ -50,6 +50,7 @@ var ExampleViewController = function(view, model) {
 				view.addActivityDuree.val(),
 				ActivityType.indexOf(view.addActivityType.val())+1, // +1 because the types go form 1 to 4 while index goes from 0 to 3 
 				view.addActivityDescription.val()));
+			console.log(String(view.addActivityDescription.val()));
 			view.displayView4(false);	
 		}
 	})

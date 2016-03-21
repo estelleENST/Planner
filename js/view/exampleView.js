@@ -38,11 +38,21 @@ var ExampleView = function (container, model) {
 	var displayActivities = function(activityTable) {
 		var tableau = "<tbody class='connectedSortable'>";
 		activityTable.forEach(function(element, index, array) {
-			tableau += "<tr width='100%' draggable='true'><td width='30%' class='time'>" + element.getLength() 
+			tableau += "<tr width='100%' draggable='true' data-toggle='tooltip' data-placement='top' title=" + element.getDescription() + "><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 		});
 		tableau += "</tbody>";
+		tooltipFunction();
 		return tableau;
+	}
+
+	var tooltipFunction = function(){
+		$(document).ready(function(){
+		    $('[data-toggle="tooltip"]').tooltip();   
+		});
+		// $(document).ready(function(){
+		//     $('[data-toggle="popover"]').popover();   
+		// });
 	}
 
 	// VIEW 1 (Parked activities)
@@ -81,19 +91,21 @@ var ExampleView = function (container, model) {
 
 		});
 
-		// Activate the timepicker and repopulate the array
-		model.days.forEach(function(element,index,array) {
-			$("#timepicker-"+index).timepicker("setTime",element.getStart());
-		});
+		$("#dayContainer")
+			.sortable();
 
 		$(".connectedSortable")
 			.sortable()
 			.disableSelection();
 
-		$("#dayContainer")
-			.sortable();
+		// Activate the timepicker and repopulate the array
+		model.days.forEach(function(element,index,array) {
+			$("#timepicker-"+index).timepicker("setTime",element.getStart());
+		});
+		tooltipFunction();
 	}
 
 	model.addObserver(updateView1);
 	model.addObserver(updateView2);
+
 }

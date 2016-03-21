@@ -3,7 +3,7 @@ var ActivityType = ["Work","Break","Presentation","Brainstorm"]
 
 // This is an activity constructor
 // When you want to create a new activity you just call
-// var act = new Activity("some activity",20,1,"Some description);
+// var act = new Activity("some activity",20,1,"Some description");
 function Activity(name,length,typeid,description){
 	var _name = name;
 	var _length = length;
