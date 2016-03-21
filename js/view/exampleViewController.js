@@ -40,6 +40,8 @@ var ExampleViewController = function(view, model) {
 	view.saveActivityBtn.click(function() {
 		if(view.addActivityTitle.val() == 0 || view.addActivityDuree.val() == 0) { // Testing if we have all needed values (no test on activity type bc it is "work" by default)
 			alert("You must choose a title and a duration for your activity! ");
+		} else if(isNaN(view.addActivityDuree.val())){
+			alert("You must enter an integer as duration! ");
 		} else {
 			model.addActivity(new Activity(view.addActivityTitle.val(),
 				view.addActivityDuree.val(),
