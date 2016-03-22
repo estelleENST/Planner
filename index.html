@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+	<link rel="stylesheet" href="style.css">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="timepicker/bootstrap-timepicker.min.css">
 
 </head>
@@ -55,7 +55,7 @@
 		</div>
 		<!-- ADDING AN ACTIVITY (VIEW 4) -->
 		<div class="row" id="overlay" style="visibility: hidden;">
-			<div class="col-md-4 col-md-offset-4 panel panel-default" id="infobox">
+			<div class="col-md-4 col-md-offset-4 panel panel-default infobox">
 				<div class="panel-heading">
 					<h5 class="panel-title">Add an activity</h5>
 				</div>
@@ -95,16 +95,20 @@
 		</div>
 		<!-- ADDING A DAY (title + label) (VIEW 5) -->
 		<div class="row" id="overlayDay" style="visibility: hidden;">
-			<div class="col-md-4 col-md-offset-4 panel panel-default" id="infobox">
+			<div class="col-md-4 col-md-offset-4 panel panel-default infobox">
 				<div class="panel-heading">
 					<h5 class="panel-title">Add a day</h5>
 				</div>
 				<div class="container-fluid" style="margin:1em;">
 					<div class="row">
-						<input type="text" id ="newTitleDay" class="form-control" placeholder="Name your day">
+						<input type="text" id ="newTitleDay" class="form-control" placeholder="Name your day (leave blank otherwise)">
 					</div>
 					<div class="row">
-						<input type="text" id ="newLabelDay" class="form-control" placeholder="Label your day">
+						<input type="text" id ="newLabelDay" class="form-control" placeholder="Label your day (leave blank otherwise)">
+					</div>
+					<div class="row input-group bootstrap-timepicker timepicker">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i> Start: </span>
+						<input id="setStartTimePicker" type="text" class="form-control input-small time">
 					</div>
 					<div class="row" style="text-align: right;">
 						<button type="button" id="cancelcreateDayBtn" class="btn btn-danger">
@@ -164,11 +168,10 @@
 		</div>
 	</div>
 
-	<!-- jQuery -->
+	<!-- jQuery and Bootstrap-->
 	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-	<!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>	
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 

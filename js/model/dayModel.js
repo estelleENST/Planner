@@ -2,8 +2,22 @@
 // but there is also a specific function in the Model that adds
 // days to the model, so you don't need call this yourself.
 function Day(startH,startM) {
+	this._title = "Day";
+	this._label = "Label";
 	this._start = startH * 60 + startM;
 	this._activities = [];
+
+	// sets the title to a new value
+	this.setTitle = function(title) {
+		this._title = title;
+		model.notifyObservers();
+	}
+
+	// sets the label to a new value
+	this.setLabel = function(label) {
+		this._label = label
+		model.notifyObservers();
+	}
 
 	// sets the start time to new value
 	this.setStart = function(startH,startM) {

@@ -11,14 +11,17 @@ var ExampleView = function (container, model) {
 	this.addActivityType = container.find("#newType");
 	this.addActivityDescription = container.find("#newDescription");
 
-	// Add day listener
+	// Add a day or remove a day buttons listener
 	this.addDayBtn = container.find("#addDayBtn");
 	this.deleteDayBtn = container.find("#deleteDay");
-	// view 5 : add a Day (title + label)
+
+	// view 5 : add a day overlay listeners (title + label + start Time)
 	this.cancelcreateDayBtn = container.find("#cancelcreateDayBtn");
 	this.savecreateDayBtn = container.find("#savecreateDayBtn");
 	this.newTitleDay = container.find("#newTitleDay");
 	this.newLabelDay = container.find("#newLabelDay");
+	this.setStartTimePicker = container.find("#setStartTimePicker");
+	this.setStartTimePicker.timepicker("setTime","08:00 AM");
 
 	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
@@ -86,8 +89,10 @@ var ExampleView = function (container, model) {
 			// Compute the activity table
 			var table = displayActivities(element._activities);
 			// $("#originalColumn").attr("class","col-md-4 dayColumn pair-"+ pair); Uncomment this to have an alternated color scheme
-			$("#originalColumn .titleDay").html("Day " + index);
-			//$("#originalColumn .titleDay").html($("#newTitleDay").val());
+			$("#originalColumn .titleDay").html(element._title);
+			$("#originalColumn .labelDay").html(element._label);
+			$("#originalColumn .titleDay").attr("id","newTitleDay-"+index);
+			$("#originalColumn .labelDay").attr("id","newLabelDay-"+index);	
 			$("#originalColumn .time").attr("id","timepicker-" + index);
 			$("#originalColumn .endTime").html(element.getEnd());
 			$("#originalColumn .totalLength").html(element.getTotalLength() + " mn");

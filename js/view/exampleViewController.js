@@ -20,7 +20,6 @@ var ExampleViewController = function(view, model) {
 		var t = view.getDisplayedDaysListeners("#timepicker-"); // Getting currently displayed timepickers in the view
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
 		var a = view.getDisplayedDaysListeners("#tableDraggable-");
-		// var titleDay = view.getDisplayedDaysListeners("#newTitleDay-");
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
 			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
@@ -58,13 +57,17 @@ var ExampleViewController = function(view, model) {
 	})
 
 //*** VIEW 5 ***
+	// Button to cancel the creation of a new day
 	view.cancelcreateDayBtn.click( function(){
 		view.displayView5(false);
 	})
-
+	// Button to save the creation of a new day
 	view.savecreateDayBtn.click( function(){
+		model.addDay(view.setStartTimePicker.data('timepicker').hour,
+			view.setStartTimePicker.data('timepicker').minute,
+			view.newTitleDay.val(),
+			view.newLabelDay.val());
 		view.displayView5(false);
-		model.addDay();
 	})
 
 

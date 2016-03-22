@@ -73,6 +73,14 @@ table {
 	margin: 0; 
 	padding: 0;
 }
+
+.infobox {
+	padding: 0;
+	top: 25%; 
+	text-align: center; 
+	background-color: #FFFFFF;
+}
+
 /* VIEW 1 */
 
 #parkedColumn {
@@ -188,27 +196,20 @@ table {
 	width: 100%;
 }
 
-#infobox {
-	padding: 0;
-	top: 25%; 
-	text-align: center; 
-	background-color: #FFFFFF;
-}
-
 /* Drag and Drop */
 .connectedSortable tr, .ui-sortable-helper {
-    cursor: move;
+	cursor: move;
 }
 .connectedSortable tr:first-child {
-    cursor: default;
+	cursor: default;
 }
 
 [draggable] {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  user-select: none;
-  /* Required to make elements draggable in old WebKit */
-  -khtml-user-drag: element;
-  -webkit-user-drag: element;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+	/* Required to make elements draggable in old WebKit */
+	-khtml-user-drag: element;
+	-webkit-user-drag: element;
 }

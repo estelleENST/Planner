@@ -5,13 +5,20 @@ function Model(){
 	
 	// adds a new day. if startH and startM (start hours and minutes)
 	// are not provided it will set the default start of the day to 08:00
-	this.addDay = function (startH,startM) {
+	this.addDay = function (startH,startM,title,label) {
 		var day;
 		if(startH){
 			day = new Day(startH,startM);
 		} else {
 			day = new Day(8,0);
 		}
+		if(title){ // If we give the day a title
+			day.setTitle(title);
+		} else { // Otherwise it's Day X
+			day.setTitle("Day " + +this.days.length);
+		}
+		if (label) // If we give the day a label, otherwise it stays as "label" by default
+			day.setLabel(label);
 		this.days.push(day);
 		this.notifyObservers();
 		return day;
