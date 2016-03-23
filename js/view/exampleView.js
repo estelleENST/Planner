@@ -54,7 +54,7 @@ var ExampleView = function (container, model) {
 	var displayActivities = function(activityTable) {
 		var tableau = "<tbody class='connectedSortable'>";
 		activityTable.forEach(function(element, index, array) {
-			tableau += "<tr width='100%' draggable='true' data-toggle='tooltip' data-placement='top' title=" + element.getDescription() + "><td width='30%' class='time'>" + element.getLength() 
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() + "><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 		});
 		tableau += "</tbody>";
@@ -66,18 +66,18 @@ var ExampleView = function (container, model) {
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
 		});
-		// $(document).ready(function(){
-		//     $('[data-toggle="popover"]').popover();   
-		// });
 	}
 
 	// VIEW 1 (Parked activities)
 	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
 
+
 		$(".connectedSortable")
 			.sortable()
-			.disableSelection();
+			.disableSelection()
+			.draggable();
+
 	}
 
 	// VIEW 2 (One day)
@@ -106,7 +106,15 @@ var ExampleView = function (container, model) {
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
-			$("#dayContainer").append(clonedDiv);		
+			$("#dayContainer").append(clonedDiv);
+			$("#tableDraggable-" + index).droppable({
+				drop:function (event, ui) {
+	                row = ui.draggable;
+	                $(this).append(row);
+	                //console.log($(this));
+	            }
+			});		
+
 
 		});
 
@@ -115,7 +123,8 @@ var ExampleView = function (container, model) {
 
 		$(".connectedSortable")
 			.sortable()
-			.disableSelection();
+			.disableSelection()
+			.draggable();
 
 		// Activate the timepicker and repopulate the array
 		model.days.forEach(function(element,index,array) {

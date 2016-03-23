@@ -31,6 +31,7 @@ var ExampleViewController = function(view, model) {
 			});
 			// For the draggable activities table
 			// Do something
+			//console.log(a[index][0].id);
 		});
 	}
 	model.addObserver(updateDayControllers);
