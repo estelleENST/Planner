@@ -4,7 +4,6 @@ var ExampleViewController = function(view, model) {
 	// Button to add a day
 	view.addDayBtn.click(function() {
 		view.displayView5(true);
-		// model.addDay();
 	})
 
 //*** VIEW 1 ***
@@ -30,11 +29,21 @@ var ExampleViewController = function(view, model) {
 				model.removeDay(index);
 			});
 			// For the draggable activities table
-			// Do something
-			//console.log(a[index][0].id);
+			a[index].droppable({
+				drop:function (event, ui) {
+	                row = ui.draggable;
+	                $(this).append(row);
+	            }
+			});	
 		});
+		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
+		$(".connectedSortable")
+			.sortable()
+			.draggable();
 	}
 	model.addObserver(updateDayControllers);
+		view.dayContainer
+			.sortable();
 
 //*** VIEW 4 ***
 	// Button to cancel the addition (closes the panel)
@@ -52,7 +61,9 @@ var ExampleViewController = function(view, model) {
 				view.addActivityDuree.val(),
 				ActivityType.indexOf(view.addActivityType.val())+1, // +1 because the types go form 1 to 4 while index goes from 0 to 3 
 				view.addActivityDescription.val()));
-			console.log(String(view.addActivityDescription.val()));
+			// Clearing input fields for next addition
+			view.addActivityTitle.val("");
+			view.addActivityDuree.val("");
 			view.displayView4(false);	
 		}
 	})
@@ -68,6 +79,9 @@ var ExampleViewController = function(view, model) {
 			view.setStartTimePicker.data('timepicker').minute,
 			view.newTitleDay.val(),
 			view.newLabelDay.val());
+		// Clearing input fields for next addition
+		view.newTitleDay.val("");
+		view.newLabelDay.val("");
 		view.displayView5(false);
 	})
 
