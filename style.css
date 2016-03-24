@@ -117,6 +117,9 @@ table {
 	text-align: center;
 	background-color: #FFFFFF;
 }
+.duration {
+	font-size: 0.7em;
+}
 .activity {
 	padding: .5em;
 	color: #FFFFFF;

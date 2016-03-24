@@ -62,6 +62,27 @@ var ExampleView = function (container, model) {
 		return tableau;
 	}
 
+	// function to display activities per day
+	var displayActivitiesDay = function(activityTable,day) {
+		var tableau = "<tbody class='connectedSortable'>";
+		var time = day.getStartTime();
+		activityTable.forEach(function(element, index, array) {
+			var timeHM;
+			if (time % 60 <10){
+				timeHM = Math.floor(time/60) + ":0" + time%60;
+			} else {
+				timeHM = Math.floor(time/60) + ":" + time%60;
+			}
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() 
+			+ "><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
+			+ "</p></td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
+			time += element.getLength();
+		});
+		tableau += "</tbody>";
+		tooltipFunction();
+		return tableau;
+	}
+
 	var tooltipFunction = function(){
 		$(document).ready(function(){
 		    $('[data-toggle="tooltip"]').tooltip();   
@@ -85,9 +106,8 @@ var ExampleView = function (container, model) {
 		// Clear the previous displays
 		$("#dayContainer").html("");
 		model.days.forEach(function(element,index,array) {
-
 			// Compute the activity table
-			var table = displayActivities(element._activities);
+			var table = displayActivitiesDay(element._activities, element);
 			// $("#originalColumn").attr("class","col-md-4 dayColumn pair-"+ pair); Uncomment this to have an alternated color scheme
 			$("#originalColumn .titleDay").html(element._title);
 			$("#originalColumn .labelDay").html(element._label);

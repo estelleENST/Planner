@@ -51,6 +51,11 @@ function Day(startH,startM) {
 	this.getStart = function() {
 		return Math.floor(this._start/60) + ":" + this._start % 60;
 	};
+
+	// return the start time of the day in minutes
+	this.getStartTime = function() {
+		return this._start;
+	}
 	
 	// returns the length (in minutes) of activities of certain type
 	this.getLengthByType = function (typeid) {
