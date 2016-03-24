@@ -15,6 +15,9 @@ var ExampleView = function (container, model) {
 	this.addDayBtn = container.find("#addDayBtn");
 	this.deleteDayBtn = container.find("#deleteDay");
 
+	// view 2: 
+	this.dayContainer = container.find("#dayContainer");
+
 	// view 5 : add a day overlay listeners (title + label + start Time)
 	this.cancelcreateDayBtn = container.find("#cancelcreateDayBtn");
 	this.savecreateDayBtn = container.find("#savecreateDayBtn");
@@ -54,7 +57,7 @@ var ExampleView = function (container, model) {
 	var displayActivities = function(activityTable) {
 		var tableau = "<tbody class='connectedSortable'>";
 		activityTable.forEach(function(element, index, array) {
-			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() + "><td width='30%' class='time'>" + element.getLength() 
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" + element.getDescription() + "'><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 		});
 		tableau += "</tbody>";
@@ -98,13 +101,6 @@ var ExampleView = function (container, model) {
 	// VIEW 1 (Parked activities)
 	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
-
-
-		$(".connectedSortable")
-			.sortable()
-			.disableSelection()
-			.draggable();
-
 	}
 
 	// VIEW 2 (One day)
@@ -114,7 +110,6 @@ var ExampleView = function (container, model) {
 		model.days.forEach(function(element,index,array) {
 			// Compute the activity table
 			var table = displayActivitiesDay(element._activities, element);
-			// $("#originalColumn").attr("class","col-md-4 dayColumn pair-"+ pair); Uncomment this to have an alternated color scheme
 			$("#originalColumn .titleDay").html(element._title);
 			$("#originalColumn .labelDay").html(element._label);
 			$("#originalColumn .titleDay").attr("id","newTitleDay-"+index);
@@ -132,77 +127,9 @@ var ExampleView = function (container, model) {
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
-			 $("#dayContainer").append(clonedDiv).sortable();
-			// $("#tableDraggable-" + index).droppable({
 
-			// });		
-		});		
-			
-
-		// ********************* //
-		// Update le modèle du day 0 when sorting (but after e.g. adding/removing a day )
-		var fixHelperModified = function(e, tr) {
-		    var $originals = tr.children();
-		    var $helper = tr.clone();
-		    $helper.children().each(function(index) {
-		        $(this).width($originals.eq(index).width())
-		    });
-		    return $helper;
-		};
-
-		var updateIndex = function(e, ui) {
-			var count = 0;
-			var count_temp = 0;
-			var test = true;
-			var modulo = ui.item.parent().children().length;
-			  // for (var j =0; j<modulo; j++){
-		   //  	for (var i=0; i<modulo; i++){
-		   //  		if (ui.item.parent().children()[j].id == (i-count)%modulo) {
-				 //  		if (i!=j){
-				 //  			console.log("changement " + (i-count)%modulo + " en " + j);
-				 //  			model.days[0]._moveActivity((i-count)%modulo,j); // pour le day 0 : à modifier
-			  // 				if (Math.abs(i-j) <2){
-			  // 					count_temp += Math.abs(i-j);
-			  // 				} 
-			  // 				if (count_temp > 1){
-			  // 					count = count_temp;
-			  // 				}
-				 //  		}
-				 //  		i=modulo;
-		   //  		} 
-		   //  	}				  		  	
-			  // }
-			  for (var j =0; j<modulo; j++){
-		    	for (var i=0; i<modulo; i++){
-		    		if (ui.item.parent().children()[j].id == (Math.abs(i-count))%modulo) {
-				  		if (i!=j){
-				  			console.log("changement " + (Math.abs(i-count))%modulo + " en " + j);
-				  			model.days[0]._moveActivity(Math.abs((i-count))%modulo,j); // pour le day 0 : à modifier
-			  				count = Math.abs(i-j);
-				  		}
-				  		i=modulo;
-		    		} 
-		    	}				  		  	
-			  }
-			  for (var k=0; k<modulo; k++){
-			  	ui.item.parent().children()[k].id = k;
-			  }
-	    };
-
-		$("#tableDraggable-0 tbody").sortable({
-		    helper: fixHelperModified,
-		    stop: updateIndex
-		}).disableSelection();
-		// ********************* //
-
-
-
-
-
-		// $(".connectedSortable")
-		// 	.sortable()
-		// 	.disableSelection()
-		// 	.draggable();
+			$("#dayContainer").append(clonedDiv);
+		});
 
 		// Activate the timepicker and repopulate the array
 		model.days.forEach(function(element,index,array) {

@@ -144,14 +144,6 @@ table {
 	display: inline-block;
 	float: none;
 }
-/* Uncomment this to have an alternated color scheme
-.pair-0 {
-	background-color: #C9CF31;
-}
-
-.pair-1 {
-	background-color: #F8931F;
-}*/
 .colorBand {
 	min-height: 5px;
 }
@@ -178,11 +170,12 @@ table {
 }
 
 .breakThreshold {
-	background-color: white; 
+	background-color: red;
+	opacity: 0.7; 
 	position: absolute; 
 	top: 70%; 
 	left: 3%; 
-	height: 1px; 
+	height: 2px; 
 	width: 94%;
 }
 
@@ -200,17 +193,6 @@ table {
 }
 
 /* Drag and Drop */
-.connectedSortable tr, .ui-sortable-helper {
-	padding: 0;
-	margin: 0;
-	cursor: move;
-}
-.connectedSortable tr:first-child {
-	padding: 0;
-	margin: 0;
-	cursor: default;
-}
-
 [draggable] {
 	-moz-user-select: none;
 	-khtml-user-select: none;
