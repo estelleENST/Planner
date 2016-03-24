@@ -66,6 +66,7 @@ var ExampleView = function (container, model) {
 	var displayActivitiesDay = function(activityTable,day) {
 		var tableau = "<tbody class='connectedSortable'>";
 		var time = day.getStartTime();
+		var count = 0;
 		activityTable.forEach(function(element, index, array) {
 			var timeHM;
 			if (time % 60 <10){
@@ -73,10 +74,15 @@ var ExampleView = function (container, model) {
 			} else {
 				timeHM = Math.floor(time/60) + ":" + time%60;
 			}
-			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() 
+			tableau += "<tr id=" + count + " width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() 
 			+ "><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
 			+ "</p></td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 			time += element.getLength();
+			count ++;
+			// tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + array[index].getDescription() 
+			// + "><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + array[index].getLength() + " min)" 
+			// + "</p></td><td width='70%' class='activity type-" + array[index].getTypeId() + "'>" + array[index].getName() + "</td></tr>";
+			// time += array[index].getLength();
 		});
 		tableau += "</tbody>";
 		tooltipFunction();
@@ -128,23 +134,58 @@ var ExampleView = function (container, model) {
 			clonedDiv.attr("id", "day-" + index);
 			$("#dayContainer").append(clonedDiv);
 			$("#tableDraggable-" + index).droppable({
-				drop:function (event, ui) {
-	                row = ui.draggable;
-	                $(this).append(row);
-	                //console.log($(this));
-	            }
+				// drop:function (event, ui) {
+	   //              row = ui.draggable;
+	   //              $(this).append(row);
+	   //          }
 			});		
-
-
-		});
+		});		
 
 		$("#dayContainer")
 			.sortable();
+			
 
-		$(".connectedSortable")
-			.sortable()
-			.disableSelection()
-			.draggable();
+		// ********************* //
+		// Update le modèle du day 0 when sorting (but after e.g. adding/removing a day )
+		var fixHelperModified = function(e, tr) {
+		    var $originals = tr.children();
+		    var $helper = tr.clone();
+		    $helper.children().each(function(index) {
+		        $(this).width($originals.eq(index).width())
+		    });
+		    return $helper;
+		};
+		var updateIndex = function(e, ui) {
+			var count = 0;
+			var count2 = 0;
+			var test = true;
+			var modulo = ui.item.parent().children().length;
+			  for (var j =0; j<modulo; j++){
+		    	for (var i=0; i<modulo; i++){
+		    		if(ui.item.parent().children()[j].id == (i-count)%modulo) {
+				  		if(i!=j){
+				  			console.log("changement " + (i-count)%modulo + " en " + j);
+				  			model.days[0]._moveActivity((i-count)%modulo,j); // pour le day 0 : à modifier
+				  			count += Math.abs(i-j)%modulo;
+				  			i=modulo;
+				  		}
+		    		} 
+		    	}				  		  	
+			  }
+	    };
+
+		$("#tableDraggable-0 tbody").sortable({
+		    helper: fixHelperModified,
+		    stop: updateIndex
+		}).disableSelection();
+		// ********************* //
+
+
+
+		// $(".connectedSortable")
+		// 	.sortable()
+		// 	.disableSelection()
+		// 	.draggable();
 
 		// Activate the timepicker and repopulate the array
 		model.days.forEach(function(element,index,array) {
