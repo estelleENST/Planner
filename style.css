@@ -106,9 +106,9 @@ table {
 
 .tableDraggable {
 	width: 100%;
-	margin-top: -.5em;
-	border-collapse: separate;
-	border-spacing: 0 .5em;
+	margin-top: 0;
+	border-collapse: collapse;
+	border-spacing: 0em 0.5em;
 }
 .tableDraggable tr:hover {
 	cursor: move;
@@ -139,7 +139,7 @@ table {
 .dayColumn {
 	background-color: #DBDACD;
 	border-radius: .3em;
-	margin: .5em 0em .5em .5em;
+	margin: 0.5em 0em .5em .5em;
 	height: 98%;
 	display: inline-block;
 	float: none;

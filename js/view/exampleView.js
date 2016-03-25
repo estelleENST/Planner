@@ -132,12 +132,11 @@ var ExampleView = function (container, model) {
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
-			$("#dayContainer").append(clonedDiv);
+			 $("#dayContainer").append(clonedDiv).sortable();
 			// $("#tableDraggable-" + index).droppable({
 
 			// });		
 		});		
-
 			
 
 		// ********************* //
@@ -188,7 +187,6 @@ var ExampleView = function (container, model) {
 			  for (var k=0; k<modulo; k++){
 			  	ui.item.parent().children()[k].id = k;
 			  }
-
 	    };
 
 		$("#tableDraggable-0 tbody").sortable({
@@ -198,8 +196,7 @@ var ExampleView = function (container, model) {
 		// ********************* //
 
 
-		$("#dayContainer")
-			.sortable();
+
 
 
 		// $(".connectedSortable")
