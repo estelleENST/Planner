@@ -133,16 +133,11 @@ var ExampleView = function (container, model) {
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
 			$("#dayContainer").append(clonedDiv);
-			$("#tableDraggable-" + index).droppable({
-				// drop:function (event, ui) {
-	   //              row = ui.draggable;
-	   //              $(this).append(row);
-	   //          }
-			});		
+			// $("#tableDraggable-" + index).droppable({
+
+			// });		
 		});		
 
-		$("#dayContainer")
-			.sortable();
 			
 
 		// ********************* //
@@ -155,31 +150,55 @@ var ExampleView = function (container, model) {
 		    });
 		    return $helper;
 		};
+
 		var updateIndex = function(e, ui) {
 			var count = 0;
-			var count2 = 0;
+			var count_temp = 0;
 			var test = true;
 			var modulo = ui.item.parent().children().length;
+			  // for (var j =0; j<modulo; j++){
+		   //  	for (var i=0; i<modulo; i++){
+		   //  		if (ui.item.parent().children()[j].id == (i-count)%modulo) {
+				 //  		if (i!=j){
+				 //  			console.log("changement " + (i-count)%modulo + " en " + j);
+				 //  			model.days[0]._moveActivity((i-count)%modulo,j); // pour le day 0 : à modifier
+			  // 				if (Math.abs(i-j) <2){
+			  // 					count_temp += Math.abs(i-j);
+			  // 				} 
+			  // 				if (count_temp > 1){
+			  // 					count = count_temp;
+			  // 				}
+				 //  		}
+				 //  		i=modulo;
+		   //  		} 
+		   //  	}				  		  	
+			  // }
 			  for (var j =0; j<modulo; j++){
+			  	console.log(ui.item.parent().children()[j]);
 		    	for (var i=0; i<modulo; i++){
-		    		if(ui.item.parent().children()[j].id == (i-count)%modulo) {
-				  		if(i!=j){
-				  			console.log("changement " + (i-count)%modulo + " en " + j);
-				  			model.days[0]._moveActivity((i-count)%modulo,j); // pour le day 0 : à modifier
-				  			count += Math.abs(i-j)%modulo;
-				  			i=modulo;
+		    		if (ui.item.parent().children()[j].id == (Math.abs(i-count))%modulo) {
+				  		if (i!=j){
+				  			console.log("changement " + (Math.abs(i-count))%modulo + " en " + j);
+				  			model.days[0]._moveActivity(Math.abs((i-count))%modulo,j); // pour le day 0 : à modifier
+			  				count = Math.abs(i-j);
 				  		}
+				  		i=modulo;
 		    		} 
 		    	}				  		  	
 			  }
+
 	    };
 
 		$("#tableDraggable-0 tbody").sortable({
 		    helper: fixHelperModified,
 		    stop: updateIndex
 		}).disableSelection();
+
 		// ********************* //
 
+
+		$("#dayContainer")
+			.sortable();
 
 
 		// $(".connectedSortable")
