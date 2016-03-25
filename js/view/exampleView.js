@@ -174,7 +174,6 @@ var ExampleView = function (container, model) {
 		   //  	}				  		  	
 			  // }
 			  for (var j =0; j<modulo; j++){
-			  	console.log(ui.item.parent().children()[j]);
 		    	for (var i=0; i<modulo; i++){
 		    		if (ui.item.parent().children()[j].id == (Math.abs(i-count))%modulo) {
 				  		if (i!=j){
@@ -186,6 +185,9 @@ var ExampleView = function (container, model) {
 		    		} 
 		    	}				  		  	
 			  }
+			  for (var k=0; k<modulo; k++){
+			  	ui.item.parent().children()[k].id = k;
+			  }
 
 	    };
 
@@ -193,7 +195,6 @@ var ExampleView = function (container, model) {
 		    helper: fixHelperModified,
 		    stop: updateIndex
 		}).disableSelection();
-
 		// ********************* //
 
 
