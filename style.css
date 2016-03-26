@@ -30,6 +30,11 @@ table {
 	font-size: 0.9em;
 }
 
+.deleteActivity{
+	height: 1.8em;
+	width: 2em;
+}
+
 #app {
 	width: 100%;
 }

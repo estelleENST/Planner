@@ -9,6 +9,7 @@ function Activity(name,length,typeid,description){
 	var _length = length;
 	var _typeid = typeid;
 	var _description = description;
+	var _pos;
 	
 	// sets the name of the activity
 	this.setName = function(name) {
@@ -59,4 +60,12 @@ function Activity(name,length,typeid,description){
 	this.getType = function () {
 		return ActivityType[_typeid];
 	};
+
+	this.setPos = function(pos){
+		_pos = pos;
+	}
+
+	this.getPos = function(){
+		return _pos;
+	}
 }

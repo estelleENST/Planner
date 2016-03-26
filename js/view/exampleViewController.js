@@ -11,6 +11,20 @@ var ExampleViewController = function(view, model) {
 	view.addActivityBtn.click(function() {
 		view.displayView4(true);
 	})
+	//
+	updateActivityControllers = function() {
+		var dd = view.getDisplayedActivitiesListeners("#deleteActivity-");
+		model.parkedActivities.forEach(function(element,index,array) {
+			dd[index].click(function() {
+				// remove activity
+				model.removeParkedActivity(index);  
+				// remove tooltip activity
+				$(".tooltip-inner").remove();
+				$(".tooltip-arrow").remove();
+			})
+		})
+
+	}
 
 
 //*** VIEW 2 ***
@@ -78,6 +92,7 @@ var ExampleViewController = function(view, model) {
 			});
 	}
 	model.addObserver(updateDayControllers);
+	model.addObserver(updateActivityControllers);
 	view.dayContainer
 		.sortable({
 			items: ">div",

@@ -70,6 +70,14 @@ var ExampleView = function (container, model) {
 		return t;
 	}
 
+	this.getDisplayedActivitiesListeners = function(id) {
+		var t = [];
+		model.parkedActivities.forEach(function(element,index,array) {
+			t.push($(id+index));
+		});
+		return t;
+	}
+
 	this.setIndexDay = function(id){
 		indexDay = id;
 	}
@@ -83,10 +91,19 @@ var ExampleView = function (container, model) {
 	// function to display activities
 	var displayActivities = function(activityTable) {
 		var tableau = "<tbody class='connectedSortable' id='parkedTable'>";
+		// activityTable.forEach(function(element, index, array) {
+		// 	tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
+		// 	+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + element.getLength() 
+		// 	+ " min</td><td width='60%' class='activity type-" + element.getTypeId() + "'>" + element.getName() 
+		// 	+ "</td><td width='10%' class='activity type-" + element.getTypeId() 
+		// 	+ "'><button type='submit' id='deleteActivity-" + index + "' class='btn btn-danger deleteActivity' ><span style='text-align:left;' class='glyphicon glyphicon-remove'></span></button></td></tr>";
+		// });
 		activityTable.forEach(function(element, index, array) {
 			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
 			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + element.getLength() 
-			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
+			+ " min</td><td width='60%' class='activity type-" + element.getTypeId() + "'>" + element.getName() 
+			+ "</td><td width='10%' class='activity type-" + element.getTypeId() 
+			+ "'><span id='deleteActivity-" + index + "' class='glyphicon glyphicon-remove'></span></td></tr>";
 		});
 		tableau += "</tbody>";
 		tooltipFunction();
@@ -111,10 +128,6 @@ var ExampleView = function (container, model) {
 			+ "</p></td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 			time += element.getLength();
 			count ++;
-			// tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + array[index].getDescription() 
-			// + "><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + array[index].getLength() + " min)" 
-			// + "</p></td><td width='70%' class='activity type-" + array[index].getTypeId() + "'>" + array[index].getName() + "</td></tr>";
-			// time += array[index].getLength();
 		});
 		tableau += "</tbody>";
 		tooltipFunction();
