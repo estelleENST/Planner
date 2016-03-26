@@ -113,7 +113,7 @@ table {
 	border-spacing: 0 .5em;
 }
 .tableDraggable tr:hover {
-	cursor: move;
+	cursor: move !important;
 }
 .time {
 	text-align: center;
@@ -147,6 +147,7 @@ table {
 	padding: 0 !important;
 }
 .dayColumn {
+	cursor: ew-resize;
 	background-color: #DBDACD;
 	border-radius: .3em;
 	margin: .5em 0em .5em .5em;
