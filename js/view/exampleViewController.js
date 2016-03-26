@@ -63,8 +63,7 @@ var ExampleViewController = function(view, model) {
 					var previousPos = ui.item.data("id");
 					var previousDay = e.target.firstElementChild.firstElementChild.id;
 					if (previousDay =="parkedTable" && currentDay == "parkedTable") {
-						// The model doesn't change, we don't do anything
-						// TODO: Add something to update order in model maybe
+						model.moveParked(previousPos,currentPos);
 					}
 					else if (previousDay =="parkedTable") {
 						model.moveActivity(null,previousPos,currentDay,currentPos);
