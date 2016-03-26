@@ -34,14 +34,16 @@ var ExampleViewController = function(view, model) {
 				view.setIndexDay(index);
 			})
 		});
-		var fixHelperModified = function(e, tr) {
-		    var $originals = tr.children();
-		    var $helper = tr.clone();
-		    $helper.children().each(function(index) {
-		        $(this).width($originals.eq(index).width())
-		    });
-		    return $helper;
-		};
+
+	// Styling helper
+	var fixHelperModified = function(e, tr) {
+	    var $originals = tr.children();
+	    var $helper = tr.clone();
+	    $helper.children().each(function(index) {
+	        $(this).width($originals.eq(index).width());
+	    });
+	    return $helper;
+	};
 
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
 		$(".translucentContainer")
@@ -49,11 +51,8 @@ var ExampleViewController = function(view, model) {
 				items: "table > tbody > *",
 				connectWith:".translucentContainer",
 				placeholder: "ui-state-highlight",
-				helper:fixHelperModified, // ou "clone"
+				helper:fixHelperModified,
 				appendTo:".translucentContainer",
-				start: function(e,ui) {
-					console.log(ui.item);
-				},
 				receive: function(e, ui) {
 					ui.item.parent().find('table > tbody').append(ui.item);	// Used when we drop item onto an empty table
 				},
@@ -80,8 +79,13 @@ var ExampleViewController = function(view, model) {
 			});
 	}
 	model.addObserver(updateDayControllers);
-		view.dayContainer
-			.sortable();
+	view.dayContainer
+		.sortable({
+			items: ">div",
+			stop: function(e,ui) {
+				model.moveDay(+ui.item.attr("id").slice(-1),ui.item.index());
+			}
+		});
 
 //*** VIEW 4 ***
 	// Button to cancel the addition (closes the panel)

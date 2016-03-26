@@ -82,6 +82,13 @@ function Model(){
 		this.notifyObservers();
 	}
 	
+	// moves a day
+	this.moveDay = function(oldposition,newposition) {
+		var newDay = this.days.splice(oldposition,1)[0];
+		this.days.splice(newposition,0,newDay);
+		this.notifyObservers();
+	};
+
 	//*** OBSERVABLE PATTERN ***
 	var listeners = [];
 	

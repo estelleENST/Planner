@@ -120,7 +120,7 @@ table {
 	background-color: #FFFFFF;
 }
 .duration {
-	font-size: 0.7em;
+	font-size: 0.7em !important;
 }
 .activity {
 	padding: .5em;

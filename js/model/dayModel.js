@@ -92,7 +92,7 @@ function Day(startH,startM) {
 	this._moveActivity = function(oldposition,newposition) {
 		// In case new position is greater than the old position and we are not moving
 		// to the last position of the array
-		if(newposition > oldposition && newposition < this._activities.length - 1) {
+		if(newposition > oldposition && newposition < this.days.length - 1) {
 			newposition--;
 		}
 		var activity = this._removeActivity(oldposition);
