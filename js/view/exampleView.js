@@ -1,4 +1,5 @@
 var ExampleView = function (container, model) {
+	var indexDay;
 
 //*** Variables accessed in view controller ***
 
@@ -14,6 +15,7 @@ var ExampleView = function (container, model) {
 	// Add a day or remove a day buttons listener
 	this.addDayBtn = container.find("#addDayBtn");
 	this.deleteDayBtn = container.find("#deleteDay");
+	this.editDayBtn = container.find("#editDay");
 
 	// view 2: 
 	this.dayContainer = container.find("#dayContainer");
@@ -25,6 +27,12 @@ var ExampleView = function (container, model) {
 	this.newLabelDay = container.find("#newLabelDay");
 	this.setStartTimePicker = container.find("#setStartTimePicker");
 	this.setStartTimePicker.timepicker("setTime","08:00 AM");
+
+	// view 6 : edit a day overlay listeners (title + label + start Time)
+	this.canceleditDayBtn = container.find("#cancelEditDayBtn");
+	this.saveEditDayBtn = container.find("#saveEditDayBtn");
+	this.editTitleDay = container.find("#editTitleDay");
+	this.editLabelDay = container.find("#editLabelDay");
 
 	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
@@ -42,6 +50,14 @@ var ExampleView = function (container, model) {
 			$("#overlayDay").attr("style","visibility:hidden;");
 	}
 
+	// function to toggle display of VIEW 6 (overlay to add an activity)
+	this.displayView6 = function(yn) {
+		if (yn) 
+			$("#overlayEditDay").attr("style","visibility:visible;");
+		else 
+			$("#overlayEditDay").attr("style","visibility:hidden;");
+	}
+
 	// function to get the currently displayed listeners for a day (id = "#timepicker-" or "#deleteDayBtn-")
 	this.getDisplayedDaysListeners = function(id) {
 		var t = [];
@@ -49,6 +65,14 @@ var ExampleView = function (container, model) {
 			t.push($(id+index));
 		});
 		return t;
+	}
+
+	this.setIndexDay = function(id){
+		indexDay = id;
+	}
+
+	this.getIndexDay = function(){
+		return indexDay;
 	}
 
 // *** Observers we call for each update in the model ***
@@ -118,6 +142,8 @@ var ExampleView = function (container, model) {
 			$("#originalColumn #addClass").attr("class","row translucentContainer");
 			$("#originalColumn .tableDraggable").html(displayActivitiesDay(element._activities, element));
 			$("#originalColumn .deleteDay").attr("id","deleteDayBtn-"+index);
+			$("#originalColumn .editDay").attr("id","editDayBtn-"+index);
+
 			$("#originalColumn .tableDraggable").attr("id","tableDraggable-"+index);
 
 			var clonedDiv = $('#originalColumn').clone();

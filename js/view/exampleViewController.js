@@ -18,6 +18,7 @@ var ExampleViewController = function(view, model) {
 	updateDayControllers = function() {
 		var t = view.getDisplayedDaysListeners("#timepicker-"); // Getting currently displayed timepickers in the view
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
+		var e = view.getDisplayedDaysListeners("#editDayBtn-");
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
 			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
@@ -27,6 +28,11 @@ var ExampleViewController = function(view, model) {
 			d[index].click(function() {
 				model.removeDay(index);
 			});
+			// For the edit day buttons
+			e[index].click(function() {
+				view.displayView6(true);
+				view.setIndexDay(index);
+			})
 		});
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
 		$(".translucentContainer")
@@ -106,6 +112,25 @@ var ExampleViewController = function(view, model) {
 		view.newTitleDay.val("");
 		view.newLabelDay.val("");
 		view.displayView5(false);
+	})
+
+//*** VIEW 6 ***
+	// Button to cancel the edit of day title/label
+	view.canceleditDayBtn.click( function() {
+		view.displayView6(false);
+	})
+	// Button to save the edit of day title/label
+	view.saveEditDayBtn.click(function() {
+			// if(view.editTitleDay.val() == 0 || view.editLabelDay.val() == 0){
+			// 	alert("You didn't change the title/label of your day!");
+			// } else {
+				var idDay = view.getIndexDay();
+				model.days[idDay].setTitle(view.editTitleDay.val());
+				model.days[idDay].setLabel(view.editLabelDay.val());
+				view.editTitleDay.val("");
+				view.editLabelDay.val("");
+				view.displayView6(false);
+			// }
 	})
 
 
