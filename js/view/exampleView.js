@@ -104,8 +104,6 @@ var ExampleView = function (container, model) {
 		// Clear the previous displays
 		$("#dayContainer").html("");
 		model.days.forEach(function(element,index,array) {
-			// Compute the activity table
-			var table = displayActivitiesDay(element._activities, element);
 			$("#originalColumn .titleDay").html(element._title);
 			$("#originalColumn .labelDay").html(element._label);
 			$("#originalColumn .titleDay").attr("id","newTitleDay-"+index);
@@ -117,16 +115,16 @@ var ExampleView = function (container, model) {
 			$("#originalColumn .type-2").attr("style","height: "+ element.getLengthByType(2)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .type-3").attr("style","height: "+ element.getLengthByType(3)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .type-4").attr("style","height: "+ element.getLengthByType(4)/element.getTotalLength()*100 + "%;");
-			$("#originalColumn .tableDraggable").html(table);
+			$("#originalColumn #addClass").attr("class","row translucentContainer");
+			$("#originalColumn .tableDraggable").html(displayActivitiesDay(element._activities, element));
 			$("#originalColumn .deleteDay").attr("id","deleteDayBtn-"+index);
 			$("#originalColumn .tableDraggable").attr("id","tableDraggable-"+index);
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
 			$("#dayContainer").append(clonedDiv);
+			$("#originalColumn #addClass").attr("class","row");
 		});
-
-
 
 		// Activate the timepicker and repopulate the array
 		model.days.forEach(function(element,index,array) {

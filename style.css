@@ -134,7 +134,7 @@ table {
 .ui-state-highlight {
 	width: 100%;
 	background-color: #DBDACD !important;
-	height: 2em;
+	height: 2.2em !important;
 }
 
 #dayContainer {

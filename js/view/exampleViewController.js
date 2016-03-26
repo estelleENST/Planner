@@ -18,7 +18,6 @@ var ExampleViewController = function(view, model) {
 	updateDayControllers = function() {
 		var t = view.getDisplayedDaysListeners("#timepicker-"); // Getting currently displayed timepickers in the view
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
-		var a = view.getDisplayedDaysListeners("#tableDraggable-");
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
 			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
@@ -28,8 +27,6 @@ var ExampleViewController = function(view, model) {
 			d[index].click(function() {
 				model.removeDay(index);
 			});
-			// For the draggable activities table
-			// Do something
 		});
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
 		$(".translucentContainer")
@@ -39,20 +36,18 @@ var ExampleViewController = function(view, model) {
 				placeholder: "ui-state-highlight",
 				helper:"clone",
 				appendTo:"body",
-				start: function(e, ui){
-					ui.placeholder.width(ui.item.width());
+				start: function(e,ui) {
+					console.log(ui.item);
 				},
-				receive: function(ev, ui) {
-					ui.item.parent().find('table > tbody').append(ui.item);
+				receive: function(e, ui) {
+					ui.item.parent().find('table > tbody').append(ui.item);	// Used when we drop item onto an empty table
 				},
 				dropOnEmpty: true,
-				forcePlaceHolderSize: true,
 				stop: function(e,ui) {
 					var currentDay = ui.item.closest("tbody").attr("id");
 					var currentPos = ui.item.index();
 					var previousPos = ui.item.data("id");
 					var previousDay = e.target.firstElementChild.firstElementChild.id;
-					console.log("Previous day: " + previousDay + " and current Day: " + currentDay);
 					if (previousDay =="parkedTable" && currentDay == "parkedTable") {
 						// The model doesn't change, we don't do anything
 					}
