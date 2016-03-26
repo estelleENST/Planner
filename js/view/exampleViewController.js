@@ -29,17 +29,44 @@ var ExampleViewController = function(view, model) {
 				model.removeDay(index);
 			});
 			// For the draggable activities table
-			a[index].droppable({
-				drop:function (event, ui) {
-	                row = ui.draggable;
-	                $(this).append(row);
-	            }
-			});	
+			// Do something
 		});
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
-		$(".connectedSortable")
-			.sortable()
-			.draggable();
+		$(".translucentContainer")
+			.sortable({
+				items: "table > tbody > *",
+				connectWith:".translucentContainer",
+				placeholder: "ui-state-highlight",
+				helper:"clone",
+				appendTo:"body",
+				start: function(e, ui){
+					ui.placeholder.width(ui.item.width());
+				},
+				receive: function(ev, ui) {
+					ui.item.parent().find('table > tbody').append(ui.item);
+				},
+				dropOnEmpty: true,
+				forcePlaceHolderSize: true,
+				stop: function(e,ui) {
+					var currentDay = ui.item.closest("tbody").attr("id");
+					var currentPos = ui.item.index();
+					var previousPos = ui.item.data("id");
+					var previousDay = e.target.firstElementChild.firstElementChild.id;
+					console.log("Previous day: " + previousDay + " and current Day: " + currentDay);
+					if (previousDay =="parkedTable" && currentDay == "parkedTable") {
+						// The model doesn't change, we don't do anything
+					}
+					else if (previousDay =="parkedTable") {
+						model.moveActivity(null,previousPos,currentDay,currentPos);
+					} else if (currentDay == "parkedTable") {
+						model.moveActivity(previousDay,previousPos,null,currentPos);
+					}
+					else {
+						model.moveActivity(previousDay,previousPos,currentDay,currentPos);
+					}
+
+				}
+			});
 	}
 	model.addObserver(updateDayControllers);
 		view.dayContainer
@@ -58,7 +85,7 @@ var ExampleViewController = function(view, model) {
 			alert("You must enter an integer as duration! ");
 		} else {
 			model.addActivity(new Activity(view.addActivityTitle.val(),
-				view.addActivityDuree.val(),
+				+view.addActivityDuree.val(),
 				ActivityType.indexOf(view.addActivityType.val())+1, // +1 because the types go form 1 to 4 while index goes from 0 to 3 
 				view.addActivityDescription.val()));
 			// Clearing input fields for next addition

@@ -41,7 +41,9 @@ table {
 .translucentContainer {
 	background-color: rgba(255,255,255,0.5);
 	padding: .5em;
-	min-height: 10em;
+	min-height: 25em;
+	max-height: 25em;
+	overflow-y: scroll;
 }
 .opaqueContainer {
 	background-color: rgba(255,255,255,0.6);
@@ -107,7 +109,7 @@ table {
 .tableDraggable {
 	width: 100%;
 	margin-top: -.5em;
-	border-collapse: separate;
+	border-collapse: separate !important;
 	border-spacing: 0 .5em;
 }
 .tableDraggable tr:hover {
@@ -124,8 +126,16 @@ table {
 	padding: .5em;
 	color: #FFFFFF;
 }
-
+.connectedSortable {
+	width: 100%;
+}
 /* VIEW 2 */
+
+.ui-state-highlight {
+	width: 100%;
+	background-color: #DBDACD !important;
+	height: 2em;
+}
 
 #dayContainer {
 	background-color: #EEEEEE;
@@ -133,8 +143,8 @@ table {
 	overflow-y: hidden;
 	white-space: nowrap; 
 	height: 100%; 
-	margin: 0; 
-	padding: 0;
+	margin: 0 !important; 
+	padding: 0 !important;
 }
 .dayColumn {
 	background-color: #DBDACD;

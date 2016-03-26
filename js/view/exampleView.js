@@ -55,9 +55,10 @@ var ExampleView = function (container, model) {
 
 	// function to display activities
 	var displayActivities = function(activityTable) {
-		var tableau = "<tbody class='connectedSortable'>";
+		var tableau = "<tbody class='connectedSortable' id='parkedTable'>";
 		activityTable.forEach(function(element, index, array) {
-			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" + element.getDescription() + "'><td width='30%' class='time'>" + element.getLength() 
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
+			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 		});
 		tableau += "</tbody>";
@@ -67,17 +68,18 @@ var ExampleView = function (container, model) {
 
 	// function to display activities per day
 	var displayActivitiesDay = function(activityTable,day) {
-		var tableau = "<tbody class='connectedSortable'>";
+		var tableau = "<tbody class='connectedSortable' id='" + model.days.indexOf(day) + "'>";
 		var time = day.getStartTime();
 		activityTable.forEach(function(element, index, array) {
 			var timeHM;
+			// Showing 10:00 instead of 10:0
 			if (time % 60 <10){
 				timeHM = Math.floor(time/60) + ":0" + time%60;
 			} else {
 				timeHM = Math.floor(time/60) + ":" + time%60;
 			}
-			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() 
-			+ "><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
+			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
 			+ "</p></td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 			time += element.getLength();
 		});
