@@ -123,6 +123,30 @@
 				</div>
 			</div>
 		</div>
+		<!-- EDIT A DAY (title + label) (VIEW 6) -->
+		<div class="row" id="overlayEditDay" style="visibility: hidden;">
+			<div class="col-md-4 col-md-offset-4 panel panel-default infobox">
+				<div class="panel-heading">
+					<h5 class="panel-title">Edit a day</h5>
+				</div>
+				<div class="container-fluid" style="margin:1em;">
+					<div class="row">
+						<input type="text" id ="editTitleDay" class="form-control" placeholder="Rename your day (leave blank otherwise)">
+					</div>
+					<div class="row">
+						<input type="text" id ="editLabelDay" class="form-control" placeholder="Relabel your day (leave blank otherwise)">
+					</div>
+					<div class="row" style="text-align: right;">
+						<button type="button" id="cancelEditDayBtn" class="btn btn-danger">
+							Cancel
+						</button>
+						<button type="button" id="saveEditDayBtn" class="btn btn-success saveEditDayBtn">
+							Edit
+						</button>
+					</div>								
+				</div>
+			</div>
+		</div>
 	</div>
 	
 
@@ -131,8 +155,13 @@
 		<div class="col-md-4 dayColumn" id="originalColumn">
 			<div class="container-fluid">
 				<div class="row">
-					<h3 class="titleDay">Day </h3> 
-					<h4 class="labelDay">Label</h4>
+					<div class="col-md-3 col-md-offset-4">
+						<h3 class="titleDay">Day </h3> 
+						<h4 class="labelDay">Label</h4>
+					</div>
+					<div class="col-md-1 col-md-offset-3">
+						<button type="submit" class="btn btn-default editDay"> <span class="glyphicon glyphicon-pencil"></span></button> 
+					</div>
 					<div class="col-md-8 opaqueContainer">
 						<div class="input-group bootstrap-timepicker timepicker" style="margin-top: 5%;">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-time"></i> Start: </span>
