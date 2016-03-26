@@ -41,7 +41,9 @@ table {
 .translucentContainer {
 	background-color: rgba(255,255,255,0.5);
 	padding: .5em;
-	min-height: 10em;
+	min-height: 25em;
+	max-height: 25em;
+	overflow-y: scroll;
 }
 .opaqueContainer {
 	background-color: rgba(255,255,255,0.6);
@@ -106,26 +108,34 @@ table {
 
 .tableDraggable {
 	width: 100%;
-	margin-top: 0;
-	border-collapse: collapse;
-	border-spacing: 0em 0.5em;
+	margin-top: -.5em;
+	border-collapse: separate !important;
+	border-spacing: 0 .5em;
 }
 .tableDraggable tr:hover {
-	cursor: move;
+	cursor: move !important;
 }
 .time {
 	text-align: center;
 	background-color: #FFFFFF;
 }
 .duration {
-	font-size: 0.7em;
+	font-size: 0.7em !important;
 }
 .activity {
 	padding: .5em;
 	color: #FFFFFF;
 }
-
+.connectedSortable {
+	width: 100%;
+}
 /* VIEW 2 */
+
+.ui-state-highlight {
+	width: 100%;
+	background-color: #DBDACD !important;
+	height: 2.2em !important;
+}
 
 #dayContainer {
 	background-color: #EEEEEE;
@@ -133,10 +143,11 @@ table {
 	overflow-y: hidden;
 	white-space: nowrap; 
 	height: 100%; 
-	margin: 0; 
-	padding: 0;
+	margin: 0 !important; 
+	padding: 0 !important;
 }
 .dayColumn {
+	cursor: ew-resize;
 	background-color: #DBDACD;
 	border-radius: .3em;
 	margin: 0.5em 0em .5em .5em;
@@ -181,7 +192,7 @@ table {
 
 /* VIEW 4 */
 
-#overlay, #overlayDay {
+#overlay, #overlayDay, #overlayEditDay {
 	position: absolute; 
 	height: 100%; 
 	background-color: rgba(0,0,0,0.8); 

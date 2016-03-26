@@ -82,6 +82,25 @@ function Model(){
 		this.notifyObservers();
 	}
 	
+	// moves a day
+	this.moveDay = function(oldposition,newposition) {
+		var newDay = this.days.splice(oldposition,1)[0];
+		this.days.splice(newposition,0,newDay);
+		this.notifyObservers();
+	};
+
+	// moves parked activities order
+	this.moveParked = function(oldposition,newposition) {
+		// In case new position is greater than the old position and we are not moving
+		// to the last position of the array
+		if(newposition > oldposition && newposition < this._activities.length - 1) {
+			newposition--;
+		}
+		var activity = this.removeParkedActivity(oldposition);
+		this.addParkedActivity(activity, newposition);
+		this.notifyObservers();
+	}
+
 	//*** OBSERVABLE PATTERN ***
 	var listeners = [];
 	

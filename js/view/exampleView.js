@@ -1,4 +1,5 @@
 var ExampleView = function (container, model) {
+	var indexDay;
 
 //*** Variables accessed in view controller ***
 
@@ -14,6 +15,10 @@ var ExampleView = function (container, model) {
 	// Add a day or remove a day buttons listener
 	this.addDayBtn = container.find("#addDayBtn");
 	this.deleteDayBtn = container.find("#deleteDay");
+	this.editDayBtn = container.find("#editDay");
+
+	// view 2: 
+	this.dayContainer = container.find("#dayContainer");
 
 	// view 2: 
 	this.dayContainer = container.find("#dayContainer");
@@ -25,6 +30,12 @@ var ExampleView = function (container, model) {
 	this.newLabelDay = container.find("#newLabelDay");
 	this.setStartTimePicker = container.find("#setStartTimePicker");
 	this.setStartTimePicker.timepicker("setTime","08:00 AM");
+
+	// view 6 : edit a day overlay listeners (title + label + start Time)
+	this.canceleditDayBtn = container.find("#cancelEditDayBtn");
+	this.saveEditDayBtn = container.find("#saveEditDayBtn");
+	this.editTitleDay = container.find("#editTitleDay");
+	this.editLabelDay = container.find("#editLabelDay");
 
 	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
@@ -42,6 +53,14 @@ var ExampleView = function (container, model) {
 			$("#overlayDay").attr("style","visibility:hidden;");
 	}
 
+	// function to toggle display of VIEW 6 (overlay to add an activity)
+	this.displayView6 = function(yn) {
+		if (yn) 
+			$("#overlayEditDay").attr("style","visibility:visible;");
+		else 
+			$("#overlayEditDay").attr("style","visibility:hidden;");
+	}
+
 	// function to get the currently displayed listeners for a day (id = "#timepicker-" or "#deleteDayBtn-")
 	this.getDisplayedDaysListeners = function(id) {
 		var t = [];
@@ -51,13 +70,22 @@ var ExampleView = function (container, model) {
 		return t;
 	}
 
+	this.setIndexDay = function(id){
+		indexDay = id;
+	}
+
+	this.getIndexDay = function(){
+		return indexDay;
+	}
+
 // *** Observers we call for each update in the model ***
 
 	// function to display activities
 	var displayActivities = function(activityTable) {
-		var tableau = "<tbody class='connectedSortable'>";
+		var tableau = "<tbody class='connectedSortable' id='parkedTable'>";
 		activityTable.forEach(function(element, index, array) {
-			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" + element.getDescription() + "'><td width='30%' class='time'>" + element.getLength() 
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
+			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 		});
 		tableau += "</tbody>";
@@ -67,18 +95,19 @@ var ExampleView = function (container, model) {
 
 	// function to display activities per day
 	var displayActivitiesDay = function(activityTable,day) {
-		var tableau = "<tbody class='connectedSortable'>";
+		var tableau = "<tbody class='connectedSortable' id='" + model.days.indexOf(day) + "'>";
 		var time = day.getStartTime();
 		var count = 0;
 		activityTable.forEach(function(element, index, array) {
 			var timeHM;
+			// Showing 10:00 instead of 10:0
 			if (time % 60 <10){
 				timeHM = Math.floor(time/60) + ":0" + time%60;
 			} else {
 				timeHM = Math.floor(time/60) + ":" + time%60;
 			}
-			tableau += "<tr id=" + count + " width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='right' title=" + element.getDescription() 
-			+ "><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
+			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
+			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
 			+ "</p></td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
 			time += element.getLength();
 			count ++;
@@ -108,8 +137,6 @@ var ExampleView = function (container, model) {
 		// Clear the previous displays
 		$("#dayContainer").html("");
 		model.days.forEach(function(element,index,array) {
-			// Compute the activity table
-			var table = displayActivitiesDay(element._activities, element);
 			$("#originalColumn .titleDay").html(element._title);
 			$("#originalColumn .labelDay").html(element._label);
 			$("#originalColumn .titleDay").attr("id","newTitleDay-"+index);
@@ -121,14 +148,18 @@ var ExampleView = function (container, model) {
 			$("#originalColumn .type-2").attr("style","height: "+ element.getLengthByType(2)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .type-3").attr("style","height: "+ element.getLengthByType(3)/element.getTotalLength()*100 + "%;");
 			$("#originalColumn .type-4").attr("style","height: "+ element.getLengthByType(4)/element.getTotalLength()*100 + "%;");
-			$("#originalColumn .tableDraggable").html(table);
+			$("#originalColumn #addClass").attr("class","row translucentContainer");
+			$("#originalColumn .tableDraggable").html(displayActivitiesDay(element._activities, element));
 			$("#originalColumn .deleteDay").attr("id","deleteDayBtn-"+index);
+			$("#originalColumn .editDay").attr("id","editDayBtn-"+index);
+
 			$("#originalColumn .tableDraggable").attr("id","tableDraggable-"+index);
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
-
 			$("#dayContainer").append(clonedDiv);
+			// We remove the class "translucentContainer" that enables drag & drop from the original column
+			$("#originalColumn #addClass").attr("class","row");
 		});
 
 		// Activate the timepicker and repopulate the array

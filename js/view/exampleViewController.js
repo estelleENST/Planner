@@ -18,7 +18,7 @@ var ExampleViewController = function(view, model) {
 	updateDayControllers = function() {
 		var t = view.getDisplayedDaysListeners("#timepicker-"); // Getting currently displayed timepickers in the view
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
-		var a = view.getDisplayedDaysListeners("#tableDraggable-");
+		var e = view.getDisplayedDaysListeners("#editDayBtn-");
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
 			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
@@ -28,15 +28,63 @@ var ExampleViewController = function(view, model) {
 			d[index].click(function() {
 				model.removeDay(index);
 			});
+			// For the edit day buttons
+			e[index].click(function() {
+				view.displayView6(true);
+				view.setIndexDay(index);
+			})
 		});
+
+	// Styling helper
+	var fixHelperModified = function(e, tr) {
+	    var $originals = tr.children();
+	    var $helper = tr.clone();
+	    $helper.children().each(function(index) {
+	        $(this).width($originals.eq(index).width());
+	    });
+	    return $helper;
+	};
+
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
-		$(".connectedSortable")
-			.sortable()
-			.draggable();
+		$(".translucentContainer")
+			.sortable({
+				items: "table > tbody > *",
+				connectWith:".translucentContainer",
+				placeholder: "ui-state-highlight",
+				helper:fixHelperModified,
+				appendTo:".translucentContainer",
+				receive: function(e, ui) {
+					ui.item.parent().find('table > tbody').append(ui.item);	// Used when we drop item onto an empty table
+				},
+				dropOnEmpty: true,
+				stop: function(e,ui) {
+					var currentDay = ui.item.closest("tbody").attr("id");
+					var currentPos = ui.item.index();
+					var previousPos = ui.item.data("id");
+					var previousDay = e.target.firstElementChild.firstElementChild.id;
+					if (previousDay =="parkedTable" && currentDay == "parkedTable") {
+						model.moveParked(previousPos,currentPos);
+					}
+					else if (previousDay =="parkedTable") {
+						model.moveActivity(null,previousPos,currentDay,currentPos);
+					} else if (currentDay == "parkedTable") {
+						model.moveActivity(previousDay,previousPos,null,currentPos);
+					}
+					else {
+						model.moveActivity(previousDay,previousPos,currentDay,currentPos);
+					}
+
+				}
+			});
 	}
 	model.addObserver(updateDayControllers);
-		view.dayContainer
-			.sortable();
+	view.dayContainer
+		.sortable({
+			items: ">div",
+			stop: function(e,ui) {
+				model.moveDay(+ui.item.attr("id").slice(-1),ui.item.index());
+			}
+		});
 
 //*** VIEW 4 ***
 	// Button to cancel the addition (closes the panel)
@@ -51,7 +99,7 @@ var ExampleViewController = function(view, model) {
 			alert("You must enter an integer as duration! ");
 		} else {
 			model.addActivity(new Activity(view.addActivityTitle.val(),
-				view.addActivityDuree.val(),
+				+view.addActivityDuree.val(),
 				ActivityType.indexOf(view.addActivityType.val())+1, // +1 because the types go form 1 to 4 while index goes from 0 to 3 
 				view.addActivityDescription.val()));
 			// Clearing input fields for next addition
@@ -76,6 +124,25 @@ var ExampleViewController = function(view, model) {
 		view.newTitleDay.val("");
 		view.newLabelDay.val("");
 		view.displayView5(false);
+	})
+
+//*** VIEW 6 ***
+	// Button to cancel the edit of day title/label
+	view.canceleditDayBtn.click( function() {
+		view.displayView6(false);
+	})
+	// Button to save the edit of day title/label
+	view.saveEditDayBtn.click(function() {
+			if(view.editTitleDay.val() == 0 || view.editLabelDay.val() == 0){
+				alert("You didn't change the title/label of your day!");
+			} else {
+				var idDay = view.getIndexDay();
+				model.days[idDay].setTitle(view.editTitleDay.val());
+				model.days[idDay].setLabel(view.editLabelDay.val());
+				view.editTitleDay.val("");
+				view.editLabelDay.val("");
+				view.displayView6(false);
+			}
 	})
 
 
