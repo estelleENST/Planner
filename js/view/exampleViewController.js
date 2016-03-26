@@ -50,7 +50,7 @@ var ExampleViewController = function(view, model) {
 				connectWith:".translucentContainer",
 				placeholder: "ui-state-highlight",
 				helper:fixHelperModified, // ou "clone"
-				appendTo:".connectedSortable",
+				appendTo:".translucentContainer",
 				start: function(e,ui) {
 					console.log(ui.item);
 				},
