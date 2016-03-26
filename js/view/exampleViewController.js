@@ -34,14 +34,23 @@ var ExampleViewController = function(view, model) {
 				view.setIndexDay(index);
 			})
 		});
+		var fixHelperModified = function(e, tr) {
+		    var $originals = tr.children();
+		    var $helper = tr.clone();
+		    $helper.children().each(function(index) {
+		        $(this).width($originals.eq(index).width())
+		    });
+		    return $helper;
+		};
+
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
 		$(".translucentContainer")
 			.sortable({
 				items: "table > tbody > *",
 				connectWith:".translucentContainer",
 				placeholder: "ui-state-highlight",
-				helper:"clone",
-				appendTo:"body",
+				helper:fixHelperModified, // ou "clone"
+				appendTo:".translucentContainer",
 				start: function(e,ui) {
 					console.log(ui.item);
 				},
@@ -121,16 +130,16 @@ var ExampleViewController = function(view, model) {
 	})
 	// Button to save the edit of day title/label
 	view.saveEditDayBtn.click(function() {
-			// if(view.editTitleDay.val() == 0 || view.editLabelDay.val() == 0){
-			// 	alert("You didn't change the title/label of your day!");
-			// } else {
+			if(view.editTitleDay.val() == 0 || view.editLabelDay.val() == 0){
+				alert("You didn't change the title/label of your day!");
+			} else {
 				var idDay = view.getIndexDay();
 				model.days[idDay].setTitle(view.editTitleDay.val());
 				model.days[idDay].setLabel(view.editLabelDay.val());
 				view.editTitleDay.val("");
 				view.editLabelDay.val("");
 				view.displayView6(false);
-			// }
+			}
 	})
 
 
