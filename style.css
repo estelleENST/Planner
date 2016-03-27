@@ -114,6 +114,7 @@ span.deleteActivity:hover {
 }
 
 .tableDraggable {
+	table-layout: fixed;
 	width: 100%;
 	margin-top: -.5em;
 	border-collapse: separate !important;
@@ -132,6 +133,9 @@ span.deleteActivity:hover {
 .activity {
 	padding: .5em;
 	color: #FFFFFF;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow-x: hidden;
 }
 .connectedSortable {
 	width: 100%;
