@@ -115,7 +115,6 @@ span.deleteActivity:hover, span.editActivity:hover  {
 }
 
 .tableDraggable {
-	table-layout: fixed;
 	width: 100%;
 	margin-top: -.5em;
 	border-collapse: separate !important;
@@ -131,12 +130,13 @@ span.deleteActivity:hover, span.editActivity:hover  {
 .duration {
 	font-size: 0.7em !important;
 }
-.activity {
+td.activity {
+	max-width: 5em;
 	padding: .5em;
 	color: #FFFFFF;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	overflow-x: hidden;
+	overflow: hidden;
 }
 .connectedSortable {
 	width: 100%;
