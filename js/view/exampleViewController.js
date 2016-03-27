@@ -11,7 +11,8 @@ var ExampleViewController = function(view, model) {
 	view.addActivityBtn.click(function() {
 		view.displayView4(true);
 	})
-	//
+
+	// Observer that updates the controllers for each activity in the parked column
 	updateActivityControllers = function() {
 		var dd = view.getDisplayedActivitiesListeners("#deleteActivity-");
 		model.parkedActivities.forEach(function(element,index,array) {
@@ -49,15 +50,15 @@ var ExampleViewController = function(view, model) {
 			})
 		});
 
-	// Styling helper
-	var fixHelperModified = function(e, tr) {
-	    var $originals = tr.children();
-	    var $helper = tr.clone();
-	    $helper.children().each(function(index) {
-	        $(this).width($originals.eq(index).width());
-	    });
-	    return $helper;
-	};
+		// Styling helper
+		var fixHelperModified = function(e, tr) {
+			var $originals = tr.children();
+			var $helper = tr.clone();
+			$helper.children().each(function(index) {
+				$(this).width($originals.eq(index).width());
+			});
+			return $helper;
+		};
 
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
 		$(".translucentContainer")
@@ -87,12 +88,14 @@ var ExampleViewController = function(view, model) {
 					else {
 						model.moveActivity(previousDay,previousPos,currentDay,currentPos);
 					}
-
 				}
 			});
 	}
+
 	model.addObserver(updateDayControllers);
 	model.addObserver(updateActivityControllers);
+
+	// Enabling sorting between the days on the dayContainer div
 	view.dayContainer
 		.sortable({
 			items: ">div",
