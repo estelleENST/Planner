@@ -59,6 +59,8 @@ var ExampleViewController = function(view, model) {
 				helper: "clone",
 				appendTo:".translucentContainer",
 				start: function(e,ui) {
+					// Resetting helper style
+					console.log(ui.helper);
 					// Setting helper width
 					ui.helper.children().each(function(index) {
 						$(this).width(ui.item.eq(index).width());
@@ -73,7 +75,7 @@ var ExampleViewController = function(view, model) {
 					ui.item.parent().find('table > tbody').append(ui.item);	// Used when we drop item onto an empty table
 				},
 				dropOnEmpty: true,
-				beforeStop: function(e,ui) {
+				stop: function(e,ui) {
 					var currentDay = ui.item.closest("tbody").attr("id");
 					var currentPos = ui.item.index();
 					var previousPos = ui.item.data("id");
@@ -89,7 +91,7 @@ var ExampleViewController = function(view, model) {
 					else {
 						model.moveActivity(previousDay,previousPos,currentDay,currentPos);
 					}
-				}
+				},
 			});
 	}
 
