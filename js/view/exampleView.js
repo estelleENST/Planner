@@ -20,9 +20,6 @@ var ExampleView = function (container, model) {
 	// view 2: 
 	this.dayContainer = container.find("#dayContainer");
 
-	// view 2: 
-	this.dayContainer = container.find("#dayContainer");
-
 	// view 5 : add a day overlay listeners (title + label + start Time)
 	this.cancelcreateDayBtn = container.find("#cancelcreateDayBtn");
 	this.savecreateDayBtn = container.find("#savecreateDayBtn");
