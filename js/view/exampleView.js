@@ -1,5 +1,6 @@
 var ExampleView = function (container, model) {
 	var indexDay;
+	var indexActivity;
 
 //*** Variables accessed in view controller ***
 
@@ -34,6 +35,15 @@ var ExampleView = function (container, model) {
 	this.editTitleDay = container.find("#editTitleDay");
 	this.editLabelDay = container.find("#editLabelDay");
 
+	// view 7 : edit an activity overlay listeners (title + duration + type + description)
+	this.cancelEditActivityBtn = container.find("#cancelEditActivityBtn");
+	this.saveEditActivityBtn = container.find("#saveEditActivityBtn");
+	this.removeEditActivityBtn = container.find("#removeEditActivityBtn");
+	this.editTitleActivity = container.find("#editTitleActivity");
+	this.editDureeActivity = container.find("#editDureeActivity");
+	this.editTypeActivity = container.find("#editTypeActivity");
+	this.editDescriptionActivity = container.find("#editDescriptionActivity");
+
 	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
 		if (yn) 
@@ -58,6 +68,14 @@ var ExampleView = function (container, model) {
 			$("#overlayEditDay").attr("style","visibility:hidden;");
 	}
 
+	// function to toggle display of VIEW 7 (overlay to edit an activity)
+	this.displayView7 = function(yn) {
+		if (yn) 
+			$("#overlayEditActivity").attr("style","visibility:visible;");
+		else 
+			$("#overlayEditActivity").attr("style","visibility:hidden;");
+	}
+
 	// function to get the currently displayed listeners for a day (id = "#timepicker-" or "#deleteDayBtn-")
 	this.getDisplayedDaysListeners = function(id) {
 		var t = [];
@@ -76,6 +94,19 @@ var ExampleView = function (container, model) {
 		return t;
 	}
 
+	// function to get the currently displayed listeners for the activity column (edit an activity button)
+	this.getDisplayedActivityListeners = function(id) {
+		var t = [];
+		model.days.forEach(function(element,index,array) {
+			var t2 = [];
+			element._activities.forEach(function(element1, index1, array1){
+				t2.push($(id+index+index1));
+			})
+			t.push(t2);
+		});
+		return t;
+	}
+
 	// function to set the index (global variable) of the day we currently want to edit
 	this.setIndexDay = function(id){
 		indexDay = id;
@@ -84,6 +115,16 @@ var ExampleView = function (container, model) {
 	// function to get the index of the day we want to edit
 	this.getIndexDay = function(){
 		return indexDay;
+	}
+
+	// function to set the index (global variable) of the activity we currently want to edit
+	this.setIndexActivity = function(id){
+		indexActivity = id;
+	}
+
+	// function to get the index of the activity we want to edit
+	this.getIndexActivity = function(){
+		return indexActivity;
 	}
 
 // *** Observers we call for each update in the model ***
@@ -118,7 +159,9 @@ var ExampleView = function (container, model) {
 			}
 			tableau += "<tr width='100%' draggable='true' data-container='body' data-toggle='tooltip' data-placement='bottom' title='" 
 			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + timeHM  + "<p class='duration'>" + " (" + element.getLength() + " min)" 
-			+ "</p></td><td width='70%' class='activity type-" + element.getTypeId() + "'>" + element.getName() + "</td></tr>";
+			+ "</p></td><td width='60%' class='activity type-" + element.getTypeId() + "'>" + element.getName() 
+			+ "</td><td width='10%' class='activity type-" + element.getTypeId() 
+			+ "'><span id='editActivity-" + model.days.indexOf(day)+ index + "' class='glyphicon glyphicon-pencil editActivity'></span></td></tr>";
 			time += element.getLength();
 			count ++;
 		});
@@ -158,14 +201,13 @@ var ExampleView = function (container, model) {
 			$("#originalColumn .tableDraggable").html(displayActivitiesDay(element._activities, element));
 			$("#originalColumn .deleteDay").attr("id","deleteDayBtn-"+index);
 			$("#originalColumn .editDay").attr("id","editDayBtn-"+index);
-
 			$("#originalColumn .tableDraggable").attr("id","tableDraggable-"+index);
 
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
 			$("#dayContainer").append(clonedDiv);
 			// We remove the class "translucentContainer" that enables drag & drop from the original column
-			$("#originalColumn #addClass").attr("class","row");
+			$("#originalColumn .removeEditActivityBtn").attr("class","row");
 		});
 
 		// Activate the timepicker and repopulate the array

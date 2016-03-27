@@ -34,6 +34,9 @@ var ExampleViewController = function(view, model) {
 		var t = view.getDisplayedDaysListeners("#timepicker-"); // Getting currently displayed timepickers in the view
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
 		var e = view.getDisplayedDaysListeners("#editDayBtn-");
+		var a = view.getDisplayedActivityListeners("#editActivity-");
+		//var r = view.getDisplayedActivityListeners("#removeEditActivityBtn-")
+
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
 			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
@@ -47,6 +50,16 @@ var ExampleViewController = function(view, model) {
 			e[index].click(function() {
 				view.displayView6(true);
 				view.setIndexDay(index);
+			})
+
+			// For the edit activities day buttons
+			element._activities.forEach(function(element2, index2, array2) {
+				a[index][index2].click(function(){
+					console.log("Jour " + index + " Activity: " + index2);
+					view.displayView7(true);
+					view.setIndexDay(index);
+					view.setIndexActivity(index2);
+				})
 			})
 		});
 
@@ -160,6 +173,39 @@ var ExampleViewController = function(view, model) {
 				view.editTitleDay.val("");
 				view.editLabelDay.val("");
 				view.displayView6(false);
+			}
+	})
+
+//*** VIEW 7 ***
+	// Button to cancel the edit of an activity
+	view.cancelEditActivityBtn.click( function() {
+		view.displayView7(false);
+	})
+	// Button to remove this activity
+	view.removeEditActivityBtn.click(function() {
+		var idDay = view.getIndexDay();
+		var idActivity = view.getIndexActivity();
+		model.days[idDay]._removeActivity(idActivity);
+		view.displayView7(false);		
+	})
+
+	// Button to save the edit of an activity
+	view.saveEditActivityBtn.click(function() {
+			if(view.editTitleActivity.val() == 0 || view.editDureeActivity.val() == 0){
+				alert("You didn't change the title/label of your day!");
+			} else {
+				var idDay = view.getIndexDay();
+				var idActivity = view.getIndexActivity();
+				console.log(model.days[idDay]._activities[idActivity]);
+				model.days[idDay]._activities[idActivity].setName(view.editTitleActivity.val());
+				model.days[idDay]._activities[idActivity].setLength(+view.editDureeActivity.val());
+				model.days[idDay]._activities[idActivity].setTypeId(ActivityType.indexOf(view.editTypeActivity.val())+1);
+				model.days[idDay]._activities[idActivity].setDescription(view.editDescriptionActivity.val());
+
+				view.editTitleActivity.val("");
+				view.editDureeActivity.val("");
+				view.editDescriptionActivity.val("");
+				view.displayView7(false);
 			}
 	})
 

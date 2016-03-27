@@ -33,7 +33,8 @@ table {
 .deleteActivity {
 	font-size: .8em;
 }
-span.deleteActivity:hover {
+
+span.deleteActivity:hover, span.editActivity:hover  {
 	cursor: pointer !important;
 }
 
@@ -203,7 +204,7 @@ span.deleteActivity:hover {
 
 /* VIEW 4 */
 
-#overlay, #overlayDay, #overlayEditDay {
+#overlay, #overlayDay, #overlayEditDay, #overlayEditActivity {
 	position: absolute; 
 	height: 100%; 
 	background-color: rgba(0,0,0,0.8); 
