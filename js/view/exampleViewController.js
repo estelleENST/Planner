@@ -59,8 +59,11 @@ var ExampleViewController = function(view, model) {
 				helper: "clone",
 				appendTo:".translucentContainer",
 				start: function(e,ui) {
-					// Resetting helper style
-					console.log(ui.helper);
+					// Setting helper height
+					ui.helper.children().each(function(index) {
+						$(this).attr("style","font-size: .9em;");
+
+					}),
 					// Setting helper width
 					ui.helper.children().each(function(index) {
 						$(this).width(ui.item.eq(index).width());
