@@ -50,29 +50,30 @@ var ExampleViewController = function(view, model) {
 			})
 		});
 
-		// Styling helper
-		var fixHelperModified = function(e, tr) {
-			var $originals = tr.children();
-			var $helper = tr.clone();
-			$helper.children().each(function(index) {
-				$(this).width($originals.eq(index).width());
-			});
-			return $helper;
-		};
-
 		// Selecting the tbodies that are classed connectedSortable and enabling drag and drop
 		$(".translucentContainer")
 			.sortable({
 				items: "table > tbody > *",
 				connectWith:".translucentContainer",
 				placeholder: "ui-state-highlight",
-				helper:fixHelperModified,
+				helper: "clone",
 				appendTo:".translucentContainer",
+				start: function(e,ui) {
+					// Setting helper width
+					ui.helper.children().each(function(index) {
+						$(this).width(ui.item.eq(index).width());
+					});
+					// Setting placeholder width
+					ui.placeholder.html("<td></td><td></td><td></td>"); // Three columns because in parked activity columns we have 3
+					ui.placeholder.children().each(function(index) {
+						$(this).width(ui.helper.eq(index).width());
+					});
+				},
 				receive: function(e, ui) {
 					ui.item.parent().find('table > tbody').append(ui.item);	// Used when we drop item onto an empty table
 				},
 				dropOnEmpty: true,
-				stop: function(e,ui) {
+				beforeStop: function(e,ui) {
 					var currentDay = ui.item.closest("tbody").attr("id");
 					var currentPos = ui.item.index();
 					var previousPos = ui.item.data("id");

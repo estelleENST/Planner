@@ -91,11 +91,6 @@ function Model(){
 
 	// moves parked activities order
 	this.moveParked = function(oldposition,newposition) {
-		// In case new position is greater than the old position and we are not moving
-		// to the last position of the array
-		if(newposition > oldposition && newposition < this._activities.length - 1) {
-			newposition--;
-		}
 		var activity = this.removeParkedActivity(oldposition);
 		this.addParkedActivity(activity, newposition);
 		this.notifyObservers();
