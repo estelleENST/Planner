@@ -30,7 +30,7 @@ table {
 	font-size: 0.9em;
 }
 
-span.editParkedActivity:hover, span.editActivity:hover  {
+span.editParkedActivity:hover, span.editActivity:hover{
 	cursor: pointer !important;
 }
 
@@ -220,10 +220,4 @@ td.activity {
 	/* Required to make elements draggable in old WebKit */
 	-khtml-user-drag: element;
 	-webkit-user-drag: element;
-}
-
-/* OVERLAY */
-.removeEditParkedActivityBtn{
-	font-size: 1em;
-	text-align: center;
 }
