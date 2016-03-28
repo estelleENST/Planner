@@ -207,6 +207,7 @@ var ExampleView = function (container, model) {
 			clonedDiv.attr("id", "day-" + index);
 			$("#dayContainer").append(clonedDiv);
 			// We remove the class "translucentContainer" that enables drag & drop from the original column
+			$("#originalColumn #addClass").attr("class","row");
 			$("#originalColumn .removeEditActivityBtn").attr("class","row");
 		});
 
