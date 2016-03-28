@@ -83,7 +83,9 @@ function Day(startH,startM) {
 	// this method will be called when needed from the model
 	// don't call it directly
 	this._removeActivity = function(position) {
-		return this._activities.splice(position,1)[0];
+		var a = this._activities.splice(position,1)[0];
+		model.notifyObservers(); // We call this function directly to remove an activity from a specific day, so we need to notify observers
+		return a;
 	};
 	
 	// moves activity inside one day

@@ -55,8 +55,14 @@ var ExampleViewController = function(view, model) {
 			// For the edit activities day buttons
 			element._activities.forEach(function(element2, index2, array2) {
 				a[index][index2].click(function(){
-					console.log("Jour " + index + " Activity: " + index2);
 					view.displayView7(true);
+
+					// Setting input fields to values of the activity
+					view.editTitleActivity.val(element2.getName());
+					view.editDureeActivity.val(element2.getLength());
+					view.editDescriptionActivity.val(element2.getDescription());
+
+					// Setting the global variables to specifiy which day and which activity we are currently editing (clicked on)
 					view.setIndexDay(index);
 					view.setIndexActivity(index2);
 				})
@@ -202,12 +208,12 @@ var ExampleViewController = function(view, model) {
 			} else {
 				var idDay = view.getIndexDay();
 				var idActivity = view.getIndexActivity();
-				console.log(model.days[idDay]._activities[idActivity]);
 				model.days[idDay]._activities[idActivity].setName(view.editTitleActivity.val());
 				model.days[idDay]._activities[idActivity].setLength(+view.editDureeActivity.val());
 				model.days[idDay]._activities[idActivity].setTypeId(ActivityType.indexOf(view.editTypeActivity.val())+1);
 				model.days[idDay]._activities[idActivity].setDescription(view.editDescriptionActivity.val());
 
+				// Clearing input
 				view.editTitleActivity.val("");
 				view.editDureeActivity.val("");
 				view.editDescriptionActivity.val("");
