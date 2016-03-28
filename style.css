@@ -30,11 +30,7 @@ table {
 	font-size: 0.9em;
 }
 
-.deleteActivity {
-	font-size: .8em;
-}
-
-span.deleteActivity:hover, span.editActivity:hover  {
+span.editParkedActivity:hover, span.editActivity:hover  {
 	cursor: pointer !important;
 }
 
@@ -204,7 +200,7 @@ td.activity {
 
 /* VIEW 4 */
 
-#overlay, #overlayDay, #overlayEditDay, #overlayEditActivity {
+.overlay {
 	position: absolute; 
 	height: 100%; 
 	background-color: rgba(0,0,0,0.8); 

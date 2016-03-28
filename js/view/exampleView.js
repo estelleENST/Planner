@@ -44,6 +44,16 @@ var ExampleView = function (container, model) {
 	this.editTypeActivity = container.find("#editTypeActivity");
 	this.editDescriptionActivity = container.find("#editDescriptionActivity");
 
+	// view 8 : edit a parked activity overlay listeners (title + duration + type + description)
+	this.cancelEditParkedActivityBtn = container.find("#cancelEditParkedActivityBtn");
+	this.saveEditParkedActivityBtn = container.find("#saveEditParkedActivityBtn");
+	this.removeEditParkedActivityBtn = container.find("#removeEditParkedActivityBtn");
+	this.editTitleParkedActivity = container.find("#editTitleParkedActivity");
+	this.editDureeParkedActivity = container.find("#editDureeParkedActivity");
+	this.editTypeParkedActivity = container.find("#editTypeParkedActivity");
+	this.editDescriptionParkedActivity = container.find("#editDescriptionParkedActivity");
+
+
 	// function to toggle display of VIEW 4 (overlay to add an activity)
 	this.displayView4 = function(yn) {
 		if (yn) 
@@ -74,6 +84,14 @@ var ExampleView = function (container, model) {
 			$("#overlayEditActivity").attr("style","visibility:visible;");
 		else 
 			$("#overlayEditActivity").attr("style","visibility:hidden;");
+	}
+
+	// function to toggle display of VIEW 8 (overlay to edit a parked activity)
+	this.displayView8 = function(yn) {
+		if (yn) 
+			$("#overlayEditParkedActivity").attr("style","visibility:visible;");
+		else 
+			$("#overlayEditParkedActivity").attr("style","visibility:hidden;");
 	}
 
 	// function to get the currently displayed listeners for a day (id = "#timepicker-" or "#deleteDayBtn-")
@@ -137,7 +155,7 @@ var ExampleView = function (container, model) {
 			+ element.getDescription() + "' data-id='" + index + "'><td width='30%' class='time'>" + element.getLength() 
 			+ " min</td><td width='60%' class='activity type-" + element.getTypeId() + "'>" + element.getName() 
 			+ "</td><td width='10%' class='activity type-" + element.getTypeId() 
-			+ "'><span id='deleteActivity-" + index + "' class='glyphicon glyphicon-remove deleteActivity'></span></td></tr>";
+			+ "'><span id='editParkedActivity-" + index + "' class='glyphicon glyphicon-pencil editParkedActivity'></span></td></tr>";
 		});
 		tableau += "</tbody>";
 		tooltipFunction();

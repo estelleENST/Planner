@@ -14,14 +14,16 @@ var ExampleViewController = function(view, model) {
 
 	// Observer that updates the controllers for each activity in the parked column
 	updateActivityControllers = function() {
-		var dd = view.getDisplayedActivitiesListeners("#deleteActivity-");
+		var dd = view.getDisplayedActivitiesListeners("#editParkedActivity-");
 		model.parkedActivities.forEach(function(element,index,array) {
 			dd[index].click(function() {
-				// remove activity
-				model.removeParkedActivity(index);  
-				// remove tooltip activity
-				$(".tooltip-inner").remove();
-				$(".tooltip-arrow").remove();
+				view.displayView8(true);
+				view.setIndexActivity(index);
+
+				// Setting input fields to values of the parked activity
+				view.editTitleParkedActivity.val(element.getName());
+				view.editDureeParkedActivity.val(element.getLength());
+				view.editDescriptionParkedActivity.val(element.getDescription());
 			})
 		})
 
@@ -200,7 +202,6 @@ var ExampleViewController = function(view, model) {
 		model.days[idDay]._removeActivity(idActivity);
 		view.displayView7(false);		
 	})
-
 	// Button to save the edit of an activity
 	view.saveEditActivityBtn.click(function() {
 			if(view.editTitleActivity.val() == 0 || view.editDureeActivity.val() == 0){
@@ -218,6 +219,36 @@ var ExampleViewController = function(view, model) {
 				view.editDureeActivity.val("");
 				view.editDescriptionActivity.val("");
 				view.displayView7(false);
+			}
+	})
+
+//*** VIEW 8 ***
+	// Button to cancel the edit of a parked activity
+	view.cancelEditParkedActivityBtn.click( function() {
+		view.displayView8(false);
+	})
+	// Button to remove this parked activity
+	view.removeEditParkedActivityBtn.click(function() {
+		var idActivity = view.getIndexActivity();
+		model.removeParkedActivity(idActivity); 
+		view.displayView8(false);		
+	})
+	// Button to save the edit of an activity
+	view.saveEditParkedActivityBtn.click(function() {
+			if(view.editTitleParkedActivity.val() == 0 || view.editDureeParkedActivity.val() == 0){
+				alert("You didn't change the title/duration of your activity!");
+			} else {
+				var idActivity = view.getIndexActivity();
+				model.parkedActivities[idActivity].setName(view.editTitleParkedActivity.val());
+				model.parkedActivities[idActivity].setLength(+view.editDureeParkedActivity.val());
+				model.parkedActivities[idActivity].setTypeId(ActivityType.indexOf(view.editTypeParkedActivity.val())+1);
+				model.parkedActivities[idActivity].setDescription(view.editDescriptionParkedActivity.val());
+
+				// Clearing input
+				view.editTitleParkedActivity.val("");
+				view.editDureeParkedActivity.val("");
+				view.editDescriptionParkedActivity.val("");
+				view.displayView8(false);
 			}
 	})
 
