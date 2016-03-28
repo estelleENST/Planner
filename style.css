@@ -221,3 +221,9 @@ td.activity {
 	-khtml-user-drag: element;
 	-webkit-user-drag: element;
 }
+
+/* OVERLAY */
+.removeEditParkedActivityBtn{
+	font-size: 1em;
+	text-align: center;
+}

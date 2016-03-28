@@ -169,8 +169,8 @@
 						<textarea id="editDescriptionActivity" style="min-height: 10em; text-align: left;" placeholder="Description" class="form-control"></textarea>
 					</div>
 					<div class="row" style="text-align: right;">
-						<button type="button" id="removeEditActivityBtn" class="btn btn-danger removeEditActivityBtn">
-							<span class="glyphicon glyphicon-remove"></span> Delete activity
+						<button type="button" id="removeEditActivityBtn" class="btn btn-default removeEditActivityBtn">
+							<span class="glyphicon glyphicon-trash" data-toggle='tooltip' data-placement='top' title='Delete activity'></span>
 						</button>
 						<button type="button" id="cancelEditActivityBtn" class="btn btn-danger">
 							Cancel
@@ -211,16 +211,20 @@
 					<div class="row">
 						<textarea id="editDescriptionParkedActivity" style="min-height: 10em; text-align: left;" placeholder="Description" class="form-control"></textarea>
 					</div>
-					<div class="row" style="text-align: right;">
-						<button type="button" id="removeEditParkedActivityBtn" class="btn btn-danger removeEditParkedActivityBtn">
-							<span class="glyphicon glyphicon-remove"></span> Delete activity
-						</button>
-						<button type="button" id="cancelEditParkedActivityBtn" class="btn btn-danger">
-							Cancel
-						</button>
-						<button type="button" id="saveEditParkedActivityBtn" class="btn btn-success">
-							Save
-						</button>
+					<div class="row">
+						<div class="col-md-2" style="text-align:left;">
+							<button type="button" id="removeEditParkedActivityBtn" class="btn btn-default removeEditParkedActivityBtn">
+								<span class="glyphicon glyphicon-trash" data-toggle='tooltip' data-placement='top' title='Delete activity'></span> 
+							</button>
+						</div>
+						<div class="col-md-6 col-md-offset-4" style="text-align:right;">
+							<button type="button" id="cancelEditParkedActivityBtn" class="btn btn-danger">
+								Cancel
+							</button>
+							<button type="button" id="saveEditParkedActivityBtn" class="btn btn-success">
+								Save
+							</button>	
+						</div>					
 					</div>								
 				</div>
 			</div>
