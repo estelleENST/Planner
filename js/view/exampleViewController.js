@@ -23,6 +23,7 @@ var ExampleViewController = function(view, model) {
 				// Setting input fields to values of the parked activity
 				view.editTitleParkedActivity.val(element.getName());
 				view.editDureeParkedActivity.val(element.getLength());
+				view.editTypeParkedActivity.val(ActivityType[element.getTypeId()-1]);
 				view.editDescriptionParkedActivity.val(element.getDescription());
 			})
 		})
@@ -62,6 +63,7 @@ var ExampleViewController = function(view, model) {
 					// Setting input fields to values of the activity
 					view.editTitleActivity.val(element2.getName());
 					view.editDureeActivity.val(element2.getLength());
+					view.editTypeActivity.val(ActivityType[element2.getTypeId()-1]);
 					view.editDescriptionActivity.val(element2.getDescription());
 
 					// Setting the global variables to specifiy which day and which activity we are currently editing (clicked on)
