@@ -235,7 +235,7 @@ var ExampleViewController = function(view, model) {
 		model.removeParkedActivity(idActivity); 
 		view.displayView8(false);		
 	})
-	// Button to save the edit of an activity
+	// Button to save the edit of this parked activity
 	view.saveEditParkedActivityBtn.click(function() {
 			if(view.editTitleParkedActivity.val() == 0 || view.editDureeParkedActivity.val() == 0){
 				alert("You didn't change the title/duration of your activity!");
