@@ -82,10 +82,12 @@ var ExampleViewController = function(view, model) {
 				helper: "clone",
 				appendTo:".translucentContainer",
 				start: function(e,ui) {
-					// Setting helper height
+					// Setting helper td string to duration instead of activity start time
+					var td = ui.helper.children(".time");
+					td.html(td.children(".duration").html().slice(1).slice(1,-1));
+					// Fixing helper height by setting the font-size
 					ui.helper.children().each(function(index) {
 						$(this).attr("style","font-size: .9em;");
-
 					}),
 					// Setting helper width
 					ui.helper.children().each(function(index) {

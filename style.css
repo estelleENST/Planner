@@ -123,6 +123,16 @@ span.editParkedActivity:hover, span.editActivity:hover{
 	text-align: center;
 	background-color: #FFFFFF;
 }
+ul {
+	margin: 0;
+	padding: 0;
+}
+li.time {
+	display: block;
+	margin: 0;
+	padding: 0;
+	line-height: .5em;
+}
 .duration {
 	font-size: 0.7em !important;
 }
