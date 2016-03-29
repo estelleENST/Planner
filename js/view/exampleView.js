@@ -62,7 +62,7 @@ var ExampleView = function (container, model) {
 			$("#overlay").attr("style","visibility:hidden;");
 	}
 
-	// function to toggle display of VIEW 5 (overlay to add an activity)
+	// function to toggle display of VIEW 5 (overlay to add a day)
 	this.displayView5 = function(yn) {
 		if (yn) 
 			$("#overlayDay").attr("style","visibility:visible;");
@@ -70,7 +70,7 @@ var ExampleView = function (container, model) {
 			$("#overlayDay").attr("style","visibility:hidden;");
 	}
 
-	// function to toggle display of VIEW 6 (overlay to add an activity)
+	// function to toggle display of VIEW 6 (overlay to edit a day)
 	this.displayView6 = function(yn) {
 		if (yn) 
 			$("#overlayEditDay").attr("style","visibility:visible;");
