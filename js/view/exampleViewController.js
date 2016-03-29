@@ -84,7 +84,9 @@ var ExampleViewController = function(view, model) {
 				start: function(e,ui) {
 					// Setting helper td string to duration instead of activity start time
 					var td = ui.helper.children(".time");
-					td.html(td.children(".duration").html().slice(1).slice(1,-1));
+					var d = td.children(".duration"); 
+					if (d.length != 0)
+						td.html(d.html().slice(1).slice(1,-1));
 					// Fixing helper height by setting the font-size
 					ui.helper.children().each(function(index) {
 						$(this).attr("style","font-size: .9em;");
