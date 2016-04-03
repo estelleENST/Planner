@@ -42,8 +42,8 @@ var ExampleViewController = function(view, model) {
 
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers
-			t[index].timepicker().on("changeTime.timepicker",function(e) { // See bootstrap's timepicker documentation
-				model.days[index].setStart(e.time.hours, e.time.minutes); //*** TODO - Need to make it work with the AM / PM too
+			t[index].timepicker().on("changeTime.timepicker",function(e) {
+				model.days[index].setStart(e.time.hours, e.time.minutes);
 			});
 			// For the delete day buttons
 			d[index].click(function() {

@@ -231,6 +231,7 @@ var ExampleView = function (container, model) {
 
 		// Activate the timepicker and repopulate the array
 		model.days.forEach(function(element,index,array) {
+			$("#timepicker-"+index).timepicker({showMeridian: false});
 			$("#timepicker-"+index).timepicker("setTime",element.getStart());
 		});
 		tooltipFunction();

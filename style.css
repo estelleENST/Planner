@@ -4,7 +4,7 @@
   font-family: 'Karla';
   font-style: normal;
   font-weight: 400;
-  src: local('Karla'), local('Karla-Regular'), url(karla.woff) format('woff');
+  src: local('Karla'), local('Karla-Regular'), url(fonts/karla.woff) format('woff');
 }
 
 html * {
