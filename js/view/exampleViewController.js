@@ -27,7 +27,6 @@ var ExampleViewController = function(view, model) {
 				view.editDescriptionParkedActivity.val(element.getDescription());
 			})
 		})
-
 	}
 
 
@@ -38,7 +37,6 @@ var ExampleViewController = function(view, model) {
 		var d = view.getDisplayedDaysListeners("#deleteDayBtn-");
 		var e = view.getDisplayedDaysListeners("#editDayBtn-");
 		var a = view.getDisplayedActivityListeners("#editActivity-");
-		//var r = view.getDisplayedActivityListeners("#removeEditActivityBtn-")
 
 		model.days.forEach(function(element,index,array) {
 			// For the timepickers

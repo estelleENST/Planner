@@ -1,10 +1,10 @@
 var ExampleView = function (container, model) {
-	var indexDay;
-	var indexActivity;
+	var indexDay; // variable that holds the id of the day we have clicked on when we want to edit a day
+	var indexActivity; // variable that holds the id of the activity we have clicked on when we want to edit an activity
 
 //*** Variables accessed in view controller ***
 
-	// Add activity listener
+	// Add activity listener (view 4)
 	this.addActivityBtn = container.find("#addActivityBtn");
 	this.cancelActivityBtn = container.find("#cancelActivityBtn");
 	this.saveActivityBtn = container.find("#saveActivityBtn");
@@ -13,15 +13,15 @@ var ExampleView = function (container, model) {
 	this.addActivityType = container.find("#newType");
 	this.addActivityDescription = container.find("#newDescription");
 
-	// Add a day or remove a day buttons listener
+	// Add a day or remove a day buttons listener (view 0)
 	this.addDayBtn = container.find("#addDayBtn");
 	this.deleteDayBtn = container.find("#deleteDay");
 	this.editDayBtn = container.find("#editDay");
 
-	// view 2: 
+	// Div containing every ay column (view 2)
 	this.dayContainer = container.find("#dayContainer");
 
-	// view 5 : add a day overlay listeners (title + label + start Time)
+	// Add a day overlay listeners (title + label + start Time) (view 5)
 	this.cancelcreateDayBtn = container.find("#cancelcreateDayBtn");
 	this.savecreateDayBtn = container.find("#savecreateDayBtn");
 	this.newTitleDay = container.find("#newTitleDay");
@@ -29,13 +29,13 @@ var ExampleView = function (container, model) {
 	this.setStartTimePicker = container.find("#setStartTimePicker");
 	this.setStartTimePicker.timepicker("setTime","08:00 AM");
 
-	// view 6 : edit a day overlay listeners (title + label + start Time)
+	// Edit a day overlay listeners (title + label + start Time) (view 6)
 	this.canceleditDayBtn = container.find("#cancelEditDayBtn");
 	this.saveEditDayBtn = container.find("#saveEditDayBtn");
 	this.editTitleDay = container.find("#editTitleDay");
 	this.editLabelDay = container.find("#editLabelDay");
 
-	// view 7 : edit an activity overlay listeners (title + duration + type + description)
+	// Edit an activity overlay listeners (title + duration + type + description) (view 7)
 	this.cancelEditActivityBtn = container.find("#cancelEditActivityBtn");
 	this.saveEditActivityBtn = container.find("#saveEditActivityBtn");
 	this.removeEditActivityBtn = container.find("#removeEditActivityBtn");
@@ -44,7 +44,7 @@ var ExampleView = function (container, model) {
 	this.editTypeActivity = container.find("#editTypeActivity");
 	this.editDescriptionActivity = container.find("#editDescriptionActivity");
 
-	// view 8 : edit a parked activity overlay listeners (title + duration + type + description)
+	// Edit a parked activity overlay listeners (title + duration + type + description) (view 8)
 	this.cancelEditParkedActivityBtn = container.find("#cancelEditParkedActivityBtn");
 	this.saveEditParkedActivityBtn = container.find("#saveEditParkedActivityBtn");
 	this.removeEditParkedActivityBtn = container.find("#removeEditParkedActivityBtn");
@@ -145,8 +145,6 @@ var ExampleView = function (container, model) {
 		return indexActivity;
 	}
 
-// *** Observers we call for each update in the model ***
-
 	// function to display activities
 	var displayActivities = function(activityTable) {
 		var tableau = "<tbody class='connectedSortable' id='parkedTable'>";
@@ -194,6 +192,8 @@ var ExampleView = function (container, model) {
 		});
 	}
 
+// *** Observers we call for each update in the model ***
+
 	// VIEW 1 (Parked activities)
 	var updateView1 = function(args) {
 		$("#td-1").html(displayActivities(model.parkedActivities));
@@ -224,7 +224,8 @@ var ExampleView = function (container, model) {
 			var clonedDiv = $('#originalColumn').clone();
 			clonedDiv.attr("id", "day-" + index);
 			$("#dayContainer").append(clonedDiv);
-			// We remove the class "translucentContainer" that enables drag & drop from the original column
+			
+			// We remove the class "translucentContainer" (that enables drag & drop) from the original column
 			$("#originalColumn #addClass").attr("class","row");
 			$("#originalColumn .removeEditActivityBtn").attr("class","row");
 		});
